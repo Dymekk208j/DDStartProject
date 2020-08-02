@@ -1,0 +1,17 @@
+<p>admin-panel works!</p>
+<h1>{{ text }}</h1>
+<button kendoButton [primary]="true" (click)="setText()">Zmień tekst</button>
+
+<router-outlet></router-outlet>
+
+<button kendoButton routerLink="/Admin/Users" class="ml-5">
+  Admin/Users
+</button>
+
+<button kendoButton routerLink="/Admin/Roles" class="ml-5">
+  Admin/Roles
+</button>
+
+<button kendoButton routerLink="/" class="ml-5">
+  Home
+</button>
