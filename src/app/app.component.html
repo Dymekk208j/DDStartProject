@@ -1,22 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="over" position="end">
-    <button
-      mat-raised-button
-      color="primary"
-      routerLink="/Admin"
-      class="w-100 mb-2"
-    >
-      {{ "admin-panel" | translate }}
-    </button>
-    <br />
-    <button kendoButton routerLink="/Register" class="w-100 mb-2">
-      {{ "register" | translate }}
-    </button>
-    <br />
-
-    <button kendoButton routerLink="/Login" class="w-100 mb-2">
-      {{ "login" | translate }}
-    </button>
+  <mat-drawer #drawer class="example-sidenav px-2" mode="over" position="end">
+    <dds-admin-menu *ngIf="administratorRole"></dds-admin-menu>
   </mat-drawer>
 
   <div class="example-sidenav-content">
@@ -41,6 +25,7 @@
         mat-mini-fab
         color="primary"
         (click)="drawer.toggle()"
+        *ngIf="administratorRole"
       >
         <mat-icon>menu</mat-icon>
       </button>

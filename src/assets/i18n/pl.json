@@ -4,5 +4,10 @@
   "admin-panel": "Administracja",
   "ddsoftware-starting-project": "Projekt startowy DDSoftware",
   "login": "Logowanie",
-  "register": "Rejestracja"
+  "register": "Rejestracja",
+  "account-management": "Zarządzanie kontami",
+  "roles": "Role",
+  "roles-management": "Zarządzanie rolami",
+  "users": "Użytkownicy",
+  "users-management": "Zarządzanie użytkownikami"
 }

@@ -14,7 +14,7 @@ import { RolesComponent } from './roles/roles.component';
   imports: [
     CommonModule,
     SharedModule,
-    StoreModule.forFeature('admin', adminPanelReducer),
+    StoreModule.forFeature('adminPanelState', adminPanelReducer),
     AdminPanelRoutingModule,
   ],
 })

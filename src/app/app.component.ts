@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'DDStartProject';
   public selectedLang: string;
+  public administratorRole: boolean = true;
 
   constructor(public translateService: TranslateService) {
     translateService.addLangs(['en', 'pl']);
