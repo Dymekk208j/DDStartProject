@@ -1,17 +1,18 @@
-<p>admin-panel works!</p>
-<h1>{{ text }}</h1>
-<button kendoButton [primary]="true" (click)="setText()">Zmień tekst</button>
+<div class="row header">
+  <div class="col-1 logo p-1">
+    <img src="../../assets/logo.png" class="img-fluid" />
+  </div>
 
-<router-outlet></router-outlet>
+  <div class="col-11 user-bar">
+    <dds-admin-panel-header></dds-admin-panel-header>
+  </div>
+</div>
 
-<button kendoButton routerLink="/Admin/Users" class="ml-5">
-  Admin/Users
-</button>
-
-<button kendoButton routerLink="/Admin/Roles" class="ml-5">
-  Admin/Roles
-</button>
-
-<button kendoButton routerLink="/" class="ml-5">
-  Home
-</button>
+<div class="row h-100">
+  <div class="col-1 px-0 py-2 main-menu">
+    <dds-admin-menu></dds-admin-menu>
+  </div>
+  <div class="col-11 main-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

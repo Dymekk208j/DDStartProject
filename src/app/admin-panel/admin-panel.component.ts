@@ -1,8 +1,9 @@
 import { getMyTestText } from './state/admin-panel.selectors';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from './state/IAdminPanelState';
 import * as AdminPanelActions from './state/admin-panel.actions';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { State } from './state/admin-panel.state';
 
 @Component({
   selector: 'dds-admin-panel',
@@ -11,9 +12,10 @@ import * as AdminPanelActions from './state/admin-panel.actions';
 })
 export class AdminPanelComponent implements OnInit, OnDestroy {
   public text: string;
+  sub: Subscription;
 
   constructor(private store: Store<State>) {
-    this.store
+    this.sub = this.store
       .select(getMyTestText)
       .subscribe((myTestText) => (this.text = myTestText));
   }
@@ -24,7 +26,14 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
       AdminPanelActions.setMyTestText({ text: 'moj nowy test text' })
     );
   }
+
+  loadText(): void {
+    this.store.dispatch(AdminPanelActions.fetchMyTestText());
+  }
+
   ngOnInit(): void {}
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }

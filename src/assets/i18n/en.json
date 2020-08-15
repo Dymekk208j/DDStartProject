@@ -9,5 +9,9 @@
   "users-management": "Users management",
   "roles-management": "Roles management",
   "roles": "Roles",
-  "users": "Users"
+  "users": "Users",
+  "account-settings": "Account settings",
+  "accounts": "Accounts",
+  "logout": "Logout",
+  "dashboard": "Dashboard"
 }

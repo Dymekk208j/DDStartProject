@@ -20,10 +20,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [],
   imports: [
+    MatButtonModule,
+    MatIconModule,
     CommonModule,
     InputsModule,
     BrowserAnimationsModule,
-    ButtonsModule,
     HttpClientModule,
     RouterModule,
     TranslateModule.forRoot({
@@ -33,21 +34,17 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    MenuModule,
     FormsModule,
   ],
   exports: [
-    CommonModule,
-    InputsModule,
-    BrowserAnimationsModule,
-    ButtonsModule,
-    TranslateModule,
-    RouterModule,
-    MenuModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule,
+    CommonModule,
+    InputsModule,
+    TranslateModule,
+    RouterModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
 })
 export class SharedModule {}

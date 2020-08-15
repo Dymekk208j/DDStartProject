@@ -1,4 +1,4 @@
-import { IAdminPanelState } from './IAdminPanelState';
+import { IAdminPanelState } from './admin-panel.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 const getAdminFeatureState = createFeatureSelector<IAdminPanelState>(

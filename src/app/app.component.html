@@ -1,11 +1,33 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav px-2" mode="over" position="end">
-    <dds-admin-menu *ngIf="administratorRole"></dds-admin-menu>
-  </mat-drawer>
+<div class="container-fluid h-100">
+  <div class="row main">
+    <div class="col-12">
+      <router-outlet></router-outlet>
+      <button
+        id="adminPanelBtn"
+        mat-mini-fab
+        color="primary"
+        routerLink="/Admin"
+        class="admin-navigation-button"
+        *ngIf="administratorRole && !isAdminPanel"
+      >
+        <mat-icon>admin_panel_settings</mat-icon>
+      </button>
+      <button
+        id="homePageBtn"
+        mat-mini-fab
+        color="primary"
+        routerLink="/"
+        class="admin-navigation-button"
+        *ngIf="administratorRole && isAdminPanel"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
+  </div>
 
-  <div class="example-sidenav-content">
-    <div class="container-fluid">
-      <div class="row header">
+  <div class="footer">
+    <div class="row footer-row">
+      <div class="col-12">
         <kendo-dropdownlist
           class="dropdown"
           [data]="translateService.getLangs()"
@@ -14,21 +36,6 @@
         >
         </kendo-dropdownlist>
       </div>
-      <div class="row">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-
-    <div class="example-button-container">
-      <button
-        id="adminPanelBtn"
-        mat-mini-fab
-        color="primary"
-        (click)="drawer.toggle()"
-        *ngIf="administratorRole"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
     </div>
   </div>
-</mat-drawer-container>
+</div>

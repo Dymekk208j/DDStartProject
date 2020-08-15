@@ -29,8 +29,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss",
-              "node_modules/@progress/kendo-theme-default/dist/all.css"
+              "node_modules/@progress/kendo-theme-default/dist/all.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },

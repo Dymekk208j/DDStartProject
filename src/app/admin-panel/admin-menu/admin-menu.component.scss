@@ -1,0 +1,95 @@
+.app-nav-accordion::ng-deep {
+  .fill-space {
+    flex: 1 1 auto;
+  }
+
+  .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .mat-expansion-panel {
+    box-shadow: none !important;
+    background: none;
+
+    &.mat-expansion-panel-spacing {
+      margin: 0px;
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0px;
+      background: #c2c7d0 !important;
+      color: #343a40 !important;
+
+      .mat-stroked-button {
+        font-size: 10px !important;
+        border-bottom: none;
+        border-radius: 0;
+      }
+    }
+
+    .active {
+      background-color: #90949c !important;
+    }
+
+    .mat-expansion-panel-header {
+      height: 35px;
+    }
+
+    .mat-expansion-panel-header-title {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 8px !important;
+      font-weight: 500;
+    }
+
+    .mat-content {
+      height: 100% !important;
+
+      .mat-raised-button {
+        font-size: 11px !important;
+        border-radius: 0;
+        color: #c2c7d0 !important;
+      }
+    }
+  }
+}
+
+.mat-list-base .mat-list-item {
+  font-size: 11px;
+}
+
+.mat-list-base {
+  padding-top: 0;
+}
+
+.mat-icon {
+  margin-right: 0.5em;
+}
+
+.mat-accordion .mat-expansion-panel:last-of-type {
+  border-radius: 0 !important;
+}
+
+.mat-accordion .mat-expansion-panel:first-of-type {
+  border-radius: 0 !important;
+}
+
+button.mat-primary {
+  color: #c2c7d0;
+  background-color: #4b545c;
+}
+
+button {
+  width: 100%;
+  border-radius: 0 !important;
+  font-size: 11px !important;
+  border-bottom: 1px solid #555f68;
+  text-align: left;
+}
+
+.active {
+  background-color: #5d656d !important;
+}
+
+.Arrow {
+  margin-right: 0 !important;
+}

@@ -9,5 +9,8 @@
   "roles": "Role",
   "roles-management": "Zarządzanie rolami",
   "users": "Użytkownicy",
-  "users-management": "Zarządzanie użytkownikami"
+  "users-management": "Zarządzanie użytkownikami",
+  "logout": "Wyloguj",
+  "account-settings": "Ustawienia konta",
+  "accounts": "Konta"
 }
