@@ -8,17 +8,17 @@ const routes: Routes = [
   {
     path: 'Admin',
     component: AdminPanelComponent,
-    // data: { breadcrumbs: 'Admin panel' },
+    data: { breadcrumbs: 'admin-panel' },
     children: [
       {
         path: 'Roles',
         component: RolesComponent,
-        // data: { breadcrumbs: 'Roles' },
+        data: { breadcrumbs: 'roles' },
       },
       {
         path: 'Users',
         component: UsersComponent,
-        // data: { breadcrumbs: 'Users' },
+        data: { breadcrumbs: 'accounts' },
       },
     ],
   },

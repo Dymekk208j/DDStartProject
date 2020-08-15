@@ -17,7 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { AdminPanelHeaderComponent } from './admin-panel-header/admin-panel-header.component';
 import { MatMenuModule } from '@angular/material/menu';
-// import { PpBreadcrumbsModule } from 'pp-breadcrumbs';
+import { PpBreadcrumbsModule } from 'pp-breadcrumbs';
 
 // NgRx
 import { StoreModule } from '@ngrx/store';
@@ -42,6 +42,7 @@ import { StoreModule } from '@ngrx/store';
     MatMenuModule,
     MatButtonModule,
     ExpandableMenuModule,
+    PpBreadcrumbsModule,
   ],
 })
 export class AdminPanelModule {}

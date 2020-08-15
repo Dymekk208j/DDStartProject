@@ -2,12 +2,16 @@
   <div class="col-10">
     <ul class="breadcrumbs mt-2">
       <li class="first">
-        <a href="#" class="px-1 py-0"><mat-icon class="mb-1">home</mat-icon></a>
+        <a routerLink="/" class="px-1 py-0"
+          ><mat-icon class="mb-1">home</mat-icon></a
+        >
       </li>
-      <li><a href="#">First Level Interior Page</a></li>
-      <li><a href="#">Second Level Interior Page</a></li>
-      <li><a href="#">Third Level Interior Page</a></li>
-      <li class="last active"><a href="#">Fourth Level Interior Page</a></li>
+      <li
+        *ngFor="let crumb of crumb$ | async; index as i"
+        [ngClass]="{ 'active last': i === (crumb$ | async).length - 1 }"
+      >
+        <a routerLink="{{ crumb.path }}">{{ crumb.text | translate }}</a>
+      </li>
     </ul>
   </div>
 
