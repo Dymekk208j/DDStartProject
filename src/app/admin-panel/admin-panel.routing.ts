@@ -1,5 +1,3 @@
-import { UserListComponent } from './user/user-list/user-list.component';
-import { UserComponent } from './user/user.component';
 import { RolesComponent } from './roles/roles.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,7 +5,7 @@ import { AdminPanelComponent } from './admin-panel.component';
 
 const routes: Routes = [
   {
-    path: 'Admin',
+    path: '',
     component: AdminPanelComponent,
     data: { breadcrumbs: 'admin-panel' },
     children: [
@@ -18,21 +16,15 @@ const routes: Routes = [
       },
       {
         path: 'Users',
-        component: UserComponent,
-        data: { breadcrumbs: 'accounts' },
-        children: [
-          {
-            path: '',
-            component: UserListComponent,
-            data: { breadcrumbs: 'users.list' },
-          },
-          {
-            path: 'List',
-            component: UserListComponent,
-            data: { breadcrumbs: 'users.list' },
-          },
-        ],
+        data: { breadcrumbs: 'users' },
+        loadChildren: () =>
+          import('./user/user.module').then((m) => m.UserModule),
       },
+      // {
+      //   path: 'Users',
+      //   component: RolesComponent,
+      //   data: { breadcrumbs: 'users' },
+      // },
     ],
   },
 ];

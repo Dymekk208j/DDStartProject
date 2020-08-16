@@ -1,5 +1,5 @@
+import { UserModule } from './user/user.module';
 import { ExpandableMenuModule } from './../shared/expandable-menu.module';
-import { MatButtonModule } from '@angular/material/button';
 import { AdminPanelEffects } from './state/admin-panel.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { AdminPanelRoutingModule } from './admin-panel.routing';
@@ -20,11 +20,6 @@ import { PpBreadcrumbsModule } from 'pp-breadcrumbs';
 
 // NgRx
 import { StoreModule } from '@ngrx/store';
-import { UserComponent } from './user/user.component';
-import { UserListComponent } from './user/user-list/user-list.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -32,8 +27,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RolesComponent,
     AdminMenuComponent,
     AdminPanelHeaderComponent,
-    UserComponent,
-    UserListComponent,
   ],
   imports: [
     AdminPanelRoutingModule,
@@ -45,12 +38,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     SharedModule,
     MatMenuModule,
-    MatButtonModule,
     ExpandableMenuModule,
     PpBreadcrumbsModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
+    UserModule,
   ],
 })
 export class AdminPanelModule {}

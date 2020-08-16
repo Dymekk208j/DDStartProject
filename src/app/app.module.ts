@@ -13,11 +13,14 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent],
   imports: [
-    AdminPanelModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     BrowserModule,
     NgbModule,
     SharedModule,

@@ -24,8 +24,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     CommonModule,
     InputsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
     RouterModule,
     TranslateModule.forRoot({
       loader: {
@@ -44,7 +42,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule,
     RouterModule,
     FormsModule,
-    BrowserAnimationsModule,
   ],
 })
 export class SharedModule {}
