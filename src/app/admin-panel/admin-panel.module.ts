@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { AdminPanelComponent } from './admin-panel.component';
 import { adminPanelReducer } from './state/admin-panel.reducer';
 
-import { UsersComponent } from './users/users.component';
 import { RolesComponent } from './roles/roles.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
@@ -21,14 +20,20 @@ import { PpBreadcrumbsModule } from 'pp-breadcrumbs';
 
 // NgRx
 import { StoreModule } from '@ngrx/store';
+import { UserComponent } from './user/user.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     AdminPanelComponent,
-    UsersComponent,
     RolesComponent,
     AdminMenuComponent,
     AdminPanelHeaderComponent,
+    UserComponent,
+    UserListComponent,
   ],
   imports: [
     AdminPanelRoutingModule,
@@ -43,6 +48,9 @@ import { StoreModule } from '@ngrx/store';
     MatButtonModule,
     ExpandableMenuModule,
     PpBreadcrumbsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
 })
 export class AdminPanelModule {}

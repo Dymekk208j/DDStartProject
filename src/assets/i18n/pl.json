@@ -8,9 +8,13 @@
   "account-management": "Zarządzanie kontami",
   "roles": "Role",
   "roles-management": "Zarządzanie rolami",
-  "users": "Użytkownicy",
+  "users": {
+    "list": "Lista",
+    "users": "Użytkownicy"
+  },
   "users-management": "Zarządzanie użytkownikami",
   "logout": "Wyloguj",
   "account-settings": "Ustawienia konta",
-  "accounts": "Konta"
+  "accounts": "Konta",
+  "dashboard": "Dashboard"
 }

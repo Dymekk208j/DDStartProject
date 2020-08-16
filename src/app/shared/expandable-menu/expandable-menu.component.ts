@@ -1,17 +1,13 @@
 import { MenuItem } from './menu-item';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'dds-expandable-menu',
   templateUrl: './expandable-menu.component.html',
   styleUrls: ['./expandable-menu.component.scss'],
 })
-export class ExpandableMenuComponent implements OnInit {
-  @Input() Header: string;
+export class ExpandableMenuComponent {
   @Input() Items: MenuItem[];
+  @Input() Header: string;
   @Input() HeaderIcon: string;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

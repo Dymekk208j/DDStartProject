@@ -1,4 +1,5 @@
-import { UsersComponent } from './users/users.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserComponent } from './user/user.component';
 import { RolesComponent } from './roles/roles.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,8 +18,20 @@ const routes: Routes = [
       },
       {
         path: 'Users',
-        component: UsersComponent,
+        component: UserComponent,
         data: { breadcrumbs: 'accounts' },
+        children: [
+          {
+            path: '',
+            component: UserListComponent,
+            data: { breadcrumbs: 'users.list' },
+          },
+          {
+            path: 'List',
+            component: UserListComponent,
+            data: { breadcrumbs: 'users.list' },
+          },
+        ],
       },
     ],
   },

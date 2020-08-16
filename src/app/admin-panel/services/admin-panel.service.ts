@@ -15,4 +15,10 @@ export class AdminPanelService {
       subscriber.next('Text z servisu');
     });
   }
+
+  fetchUserList(): Observable<string[]> {
+    return new Observable<string[]>((subscriber) => {
+      subscriber.next(['user1', 'user2']);
+    });
+  }
 }
