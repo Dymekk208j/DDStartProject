@@ -11,6 +11,10 @@ import { UserListComponent } from './user-list/user-list.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [UserComponent, UserListComponent],
@@ -23,6 +27,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    AgGridModule.withComponents([]),
   ],
   exports: [UserComponent],
 })

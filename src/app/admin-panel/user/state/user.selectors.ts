@@ -3,7 +3,7 @@ import { IUserState } from './user.state';
 
 const getUserFeatureState = createFeatureSelector<IUserState>('userState');
 
-export const getMyTestText = createSelector(
+export const getUsers = createSelector(
   getUserFeatureState,
-  (sliceState) => sliceState.myTestText
+  (sliceState) => sliceState.loadUsersSuccessParams
 );

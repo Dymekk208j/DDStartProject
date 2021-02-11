@@ -11,7 +11,14 @@
   "roles": "Roles",
   "users": {
     "list": "List",
-    "users": "Users"
+    "users": "Users",
+    "header": {
+      "Id": "Id",
+      "Name": "Name",
+      "Role": "Role",
+      "Verified": "Verified",
+      "VerificationToken": "Verification token"
+    }
   },
   "account-settings": "Account settings",
   "accounts": "Accounts",

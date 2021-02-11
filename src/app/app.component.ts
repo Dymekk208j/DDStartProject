@@ -19,7 +19,7 @@ export class AppComponent {
     public translateService: TranslateService,
     private router: Router
   ) {
-    console.log(router);
+    console.log(router); //TODO: Do usuniećia
 
     translateService.addLangs(['en', 'pl']);
     translateService.setDefaultLang('en');
@@ -27,6 +27,7 @@ export class AppComponent {
     this.selectedLang = browserLanguage.match(/en|pl/) ? browserLanguage : 'en';
     translateService.use(this.selectedLang);
 
+    //TODO: Usuniecie subskrybcji i przenisienie do store
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event) => {

@@ -6,29 +6,29 @@ import { IUserState } from './user.state';
 export const userReducer = createReducer<IUserState>(
   UserStateInitialState,
   on(
-    AdminPanelActions.setMyTestText,
+    AdminPanelActions.setUsers,
     (state, params): IUserState => {
       return {
         ...state,
-        myTestText: params.text,
+        users: params.users,
       };
     }
   ),
   on(
-    AdminPanelActions.fetchMyTestTextSuccess,
+    AdminPanelActions.fetchUsersSuccess,
     (state, params): IUserState => {
       return {
         ...state,
-        myTestText: params.text,
+        loadUsersSuccessParams: params.loadUsersSuccessParams,
       };
     }
   ),
   on(
-    AdminPanelActions.fetchMyTestTextError,
+    AdminPanelActions.fetchUsersError,
     (state, params): IUserState => {
       return {
         ...state,
-        myTestText: 'error',
+        error: 'error',
       };
     }
   )

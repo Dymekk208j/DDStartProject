@@ -16,15 +16,10 @@ const routes: Routes = [
       },
       {
         path: 'Users',
-        data: { breadcrumbs: 'users' },
+        data: { breadcrumbs: 'users.users' },
         loadChildren: () =>
           import('./user/user.module').then((m) => m.UserModule),
       },
-      // {
-      //   path: 'Users',
-      //   component: RolesComponent,
-      //   data: { breadcrumbs: 'users' },
-      // },
     ],
   },
 ];

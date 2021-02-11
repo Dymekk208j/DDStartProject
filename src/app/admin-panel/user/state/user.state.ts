@@ -1,9 +1,13 @@
-import { IAdminPanelState } from './../../state/admin-panel.state';
+import * as AppState from '../../../state/app.state';
+import { LoadUsersSuccessParams } from '../models/LoadUsersSuccessParams';
+import { User } from '../models/user';
 
-export interface State extends IAdminPanelState {
+export interface State extends AppState.State {
   userState: IUserState;
 }
 
 export interface IUserState {
-  myTestText: string;
+  users: User[];
+  loadUsersSuccessParams: LoadUsersSuccessParams;
+  error: string;
 }

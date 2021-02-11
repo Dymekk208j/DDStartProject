@@ -10,7 +10,14 @@
   "roles-management": "Zarządzanie rolami",
   "users": {
     "list": "Lista",
-    "users": "Użytkownicy"
+    "users": "Użytkownicy",
+    "header": {
+      "Id": "Id",
+      "Name": "Nazwa",
+      "Role": "Rola",
+      "VerificationToken": "Token weryfikacyjny",
+      "Verified": "Zweryfikowano"
+    }
   },
   "users-management": "Zarządzanie użytkownikami",
   "logout": "Wyloguj",

@@ -1,18 +1,24 @@
 import { createAction, props } from '@ngrx/store';
+import { IServerSideGetRowsRequest } from 'ag-grid-community';
+import { LoadUsersSuccessParams } from '../models/LoadUsersSuccessParams';
+import { User } from '../models/user';
 
-export const setMyTestText = createAction(
-  '[Admin] Set myTestText',
-  props<{ text: string }>()
+export const setUsers = createAction(
+  '[Admin] Set users',
+  props<{ users: User[] }>()
 );
 
-export const fetchMyTestText = createAction('[Admin] Fetch myTestText');
-
-export const fetchMyTestTextSuccess = createAction(
-  '[Admin] Fetch myTestText success',
-  props<{ text: string }>()
+export const fetchUsers = createAction(
+  '[Admin] Fetch users',
+  props<{ request: IServerSideGetRowsRequest }>()
 );
 
-export const fetchMyTestTextError = createAction(
-  '[Admin] Fetch myTestText error',
+export const fetchUsersSuccess = createAction(
+  '[Admin] Fetch users success',
+  props<{ loadUsersSuccessParams: LoadUsersSuccessParams }>()
+);
+
+export const fetchUsersError = createAction(
+  '[Admin] Fetch users error',
   props<{ errors: string }>()
 );

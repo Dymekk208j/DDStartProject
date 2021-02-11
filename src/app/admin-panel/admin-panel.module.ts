@@ -11,7 +11,6 @@ import { adminPanelReducer } from './state/admin-panel.reducer';
 
 import { RolesComponent } from './roles/roles.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
-import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { AdminPanelHeaderComponent } from './admin-panel-header/admin-panel-header.component';
@@ -33,7 +32,6 @@ import { StoreModule } from '@ngrx/store';
     CommonModule,
     StoreModule.forFeature('adminPanelState', adminPanelReducer),
     EffectsModule.forFeature([AdminPanelEffects]),
-    DropDownsModule,
     MatExpansionModule,
     MatListModule,
     SharedModule,

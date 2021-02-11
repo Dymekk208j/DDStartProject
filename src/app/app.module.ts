@@ -1,4 +1,4 @@
-import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AdminPanelModule } from './admin-panel/admin-panel.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ErrorsPagesModule } from './errors-pages/errors-pages.module';
@@ -14,25 +14,37 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [AppComponent, LandingPageComponent],
   imports: [
+    MatSelectModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     BrowserModule,
     NgbModule,
     SharedModule,
     AppRoutingModule,
     ErrorsPagesModule,
-    DropDownsModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

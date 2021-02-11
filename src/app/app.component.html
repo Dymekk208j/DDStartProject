@@ -27,14 +27,20 @@
 
   <div class="footer">
     <div class="row footer-row">
-      <div class="col-12">
-        <kendo-dropdownlist
-          class="dropdown"
-          [data]="translateService.getLangs()"
-          [(ngModel)]="selectedLang"
-          (valueChange)="translateService.use($event)"
-        >
-        </kendo-dropdownlist>
+      <div class="col-12 ml-2">
+        <mat-form-field>
+          <mat-select
+            [(value)]="selectedLang"
+            (valueChange)="translateService.use($event)"
+          >
+            <mat-option
+              *ngFor="let food of translateService.getLangs()"
+              [value]="food"
+            >
+              {{ food }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
   </div>
