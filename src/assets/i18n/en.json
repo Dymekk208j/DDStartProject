@@ -10,18 +10,44 @@
   "roles-management": "Roles management",
   "roles": "Roles",
   "users": {
-    "list": "List",
+    "list": {
+      "actions": {
+        "Details": "Details",
+        "Block": "Block",
+        "Unblock": "Unblock",
+        "Remove": "Remove",
+        "ManuallyResendVerificationToken": "Manually resend verification token",
+        "Edit": "Edit"
+      },
+      "list": "List"
+    },
     "users": "Users",
     "header": {
       "Id": "Id",
       "Name": "Name",
       "Role": "Role",
       "Verified": "Verified",
-      "VerificationToken": "Verification token"
+      "VerificationToken": "Verification token",
+      "RegistrationDate": "Registration date",
+      "Actions": "Actions",
+      "Blocked": "Blocked"
+    },
+    "role": {
+      "Administrator": "Administrator",
+      "Moderator": "Moderator",
+      "User": "User"
     }
   },
   "account-settings": "Account settings",
   "accounts": "Accounts",
   "logout": "Logout",
-  "dashboard": "Dashboard"
+  "dashboard": "Dashboard",
+  "languages": {
+    "pl": "Polish",
+    "en": "English"
+  },
+  "boolean": {
+    "true": "Yes",
+    "false": "No"
+  }
 }

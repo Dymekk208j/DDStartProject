@@ -1,0 +1,57 @@
+<button
+  mat-icon-button
+  color="basic"
+  matTooltip=" {{ 'users.list.actions.Details' | translate }}"
+  (click)="btnDetailsClickedHandler()"
+>
+  <mat-icon>info</mat-icon>
+</button>
+
+<button
+  mat-icon-button
+  color="basic"
+  matTooltip=" {{ 'users.list.actions.Edit' | translate }}"
+  (click)="btnEditClickedHandler()"
+>
+  <mat-icon>edit</mat-icon>
+</button>
+
+<button
+  *ngIf="!params.data.Blocked"
+  mat-icon-button
+  color="warn"
+  matTooltip=" {{ 'users.list.actions.Block' | translate }}"
+  (click)="btnBlockClickedHandler()"
+>
+  <mat-icon>block</mat-icon>
+</button>
+
+<button
+  *ngIf="params.data.Blocked"
+  mat-icon-button
+  color="success"
+  matTooltip=" {{ 'users.list.actions.Unblock' | translate }}"
+  (click)="btnUnblockClickedHandler()"
+>
+  <mat-icon>check_circle</mat-icon>
+</button>
+
+<button
+  mat-icon-button
+  color="warn"
+  matTooltip=" {{ 'users.list.actions.Remove' | translate }}"
+  (click)="btnRemoveClickedHandler()"
+>
+  <mat-icon>delete_forever</mat-icon>
+</button>
+
+<button
+  mat-icon-button
+  color="basic"
+  matTooltip=" {{
+        'users.list.actions.ManuallyResendVerificationToken' | translate
+      }}"
+  (click)="btnResendClickedHandler()"
+>
+  <mat-icon>email</mat-icon>
+</button>

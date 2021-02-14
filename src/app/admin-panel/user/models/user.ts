@@ -6,4 +6,7 @@ export class User {
   public Role: Role;
   public Verified: boolean;
   public VerificationToken: string;
+  public RegistrationDate: Date;
+  public Blocked: boolean;
+  public BlockedDate?: Date;
 }

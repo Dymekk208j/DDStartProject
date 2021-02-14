@@ -11,12 +11,12 @@ const routes: Routes = [
       {
         path: '',
         component: UserListComponent,
-        data: { breadcrumbs: 'users.list' },
+        data: { breadcrumbs: 'users.list.list' },
       },
       {
         path: 'List',
         component: UserListComponent,
-        data: { breadcrumbs: 'users.list' },
+        data: { breadcrumbs: 'users.list.list' },
       },
     ],
   },

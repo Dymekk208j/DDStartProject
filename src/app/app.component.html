@@ -34,10 +34,10 @@
             (valueChange)="translateService.use($event)"
           >
             <mat-option
-              *ngFor="let food of translateService.getLangs()"
-              [value]="food"
+              *ngFor="let lang of translateService.getLangs()"
+              [value]="lang"
             >
-              {{ food }}
+              {{ "languages." + lang | translate }}
             </mat-option>
           </mat-select>
         </mat-form-field>

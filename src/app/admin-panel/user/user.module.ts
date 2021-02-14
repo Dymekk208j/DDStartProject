@@ -15,9 +15,10 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { AgGridModule } from 'ag-grid-angular';
+import { ActionsCellRenderer } from './user-list/ActionsCellRenderer/ActionsCellRenderer';
 
 @NgModule({
-  declarations: [UserComponent, UserListComponent],
+  declarations: [UserComponent, UserListComponent, ActionsCellRenderer],
   imports: [
     UserRoutingModule,
     CommonModule,

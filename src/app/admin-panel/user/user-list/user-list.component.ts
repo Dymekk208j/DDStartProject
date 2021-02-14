@@ -1,3 +1,5 @@
+import { ActionsCellRenderer } from './ActionsCellRenderer/ActionsCellRenderer';
+import { FilterHelper } from './../../../shared/helpers/FilterHelper';
 import { State } from './../../../state/app.state';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,9 +11,12 @@ import {
   GridOptions,
   ICellRendererParams,
   IServerSideGetRowsParams,
+  ColDef,
 } from 'ag-grid-community';
 import { LoadUsersSuccessParams } from '../models/LoadUsersSuccessParams';
 import { TranslateService } from '@ngx-translate/core';
+import { Role } from '../models/role';
+import * as moment from 'moment';
 
 @Component({
   selector: 'dds-user-list',
@@ -20,15 +25,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class UserListComponent implements OnInit {
   userList$: Observable<LoadUsersSuccessParams>;
-  columnDefs: any[];
+  columnDefs: ColDef[];
   gridOptions: GridOptions;
 
   constructor(
     private store: Store<State>,
     private translate: TranslateService
   ) {
-    this.translate.onLangChange.subscribe((e) => {
+    this.translate.onLangChange.subscribe(() => {
       this.gridOptions.api.refreshHeader();
+      this.gridOptions.api.redrawRows();
     });
   }
 
@@ -40,26 +46,98 @@ export class UserListComponent implements OnInit {
         field: 'Id',
         headerName: 'Id',
         headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
       },
       {
         field: 'Name',
         headerName: 'Name',
         headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        filter: 'agTextColumnFilter',
+        filterParams: {
+          defaultOption: 'startsWith',
+        },
       },
       {
         field: 'Role',
         headerName: 'Role',
         headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        filter: true,
+        filterParams: {
+          values: (params) => {
+            var values = [];
+            for (let item in Role) {
+              if (isNaN(Number(item))) {
+                values.push(this.translate.instant('users.role.' + item));
+              }
+            }
+            params.success(values);
+          },
+        },
+        cellRenderer: (params) => {
+          return this.translate.instant('users.role.' + Role[params.data.Role]);
+        },
       },
       {
         field: 'Verified',
         headerName: 'Verified',
         headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        filter: true,
+        valueFormatter: (data) => {
+          return this.translate.instant('boolean.' + data.value.toString());
+        },
       },
       {
-        field: 'VerificationToken',
-        headerName: 'VerificationToken',
+        field: 'Blocked',
+        headerName: 'Blocked',
         headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        valueFormatter: (data) => {
+          return this.translate.instant('boolean.' + data.value.toString());
+        },
+      },
+      {
+        field: 'RegistrationDate',
+        headerName: 'RegistrationDate',
+        headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        filter: 'agDateColumnFilter',
+        filterParams: FilterHelper.dateFilterParams,
+        valueFormatter: (data) => {
+          return moment(data.value).format('DD/MM/YYYY HH:mm').toString();
+        },
+      },
+      {
+        headerName: 'Actions',
+        headerValueGetter: this.localizeHeader.bind(this),
+        sortable: false,
+        filter: false,
+        pinned: 'right',
+        suppressMenu: true,
+        suppressMovable: true,
+        cellRenderer: 'actionsCellRenderer',
+        cellRendererParams: {
+          onDetailsClick: (id: string) => {
+            alert(`${id} was clicked onDetailsClick`);
+          },
+          onEditClick: (id: string) => {
+            alert(`${id} was clicked onEditClick`);
+          },
+          onBlockClick: (id: string) => {
+            alert(`${id} was clicked onBlockClick`);
+          },
+          onUnblockClick: (id: string) => {
+            alert(`${id} was clicked onUnblockClick`);
+          },
+          onRemoveClick: (id: string) => {
+            alert(`${id} was clicked onRemoveClick`);
+          },
+          onResendClick: (id: string) => {
+            alert(`${id} was clicked onResendClick`);
+          },
+        },
       },
     ];
 
@@ -71,6 +149,9 @@ export class UserListComponent implements OnInit {
         params.api.sizeColumnsToFit();
       },
       serverSideDatasource: this.dataSource,
+      frameworkComponents: {
+        actionsCellRenderer: ActionsCellRenderer,
+      },
     };
   }
 
@@ -89,8 +170,8 @@ export class UserListComponent implements OnInit {
   };
 
   public localizeHeader(parameters: ICellRendererParams): string {
-    let headerIdentifier = parameters.colDef.field;
-    console.log('headerIdentifier', headerIdentifier);
+    let headerIdentifier = parameters.colDef.headerName;
+
     return this.translate.instant('users.header.' + headerIdentifier);
   }
 }

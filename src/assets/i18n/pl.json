@@ -9,19 +9,45 @@
   "roles": "Role",
   "roles-management": "Zarządzanie rolami",
   "users": {
-    "list": "Lista",
+    "list": {
+      "actions": {
+        "Details": "Szczegóły",
+        "Block": "Zablokuj",
+        "Unblock": "Odblokuj",
+        "Remove": "Usuń",
+        "ManuallyResendVerificationToken": "Wyślij ponownie token weryfikacyjny",
+        "Edit": "Edytuj"
+      },
+      "list": "Lista"
+    },
     "users": "Użytkownicy",
     "header": {
       "Id": "Id",
       "Name": "Nazwa",
       "Role": "Rola",
       "VerificationToken": "Token weryfikacyjny",
-      "Verified": "Zweryfikowano"
+      "Verified": "Zweryfikowano",
+      "RegistrationDate": "Data rejestracji",
+      "Actions": "Akcje",
+      "Blocked": "Zablokowany"
+    },
+    "role": {
+      "Administrator": "Administrator",
+      "Moderator": "Moderator",
+      "User": "Użytkownik"
     }
   },
   "users-management": "Zarządzanie użytkownikami",
   "logout": "Wyloguj",
   "account-settings": "Ustawienia konta",
   "accounts": "Konta",
-  "dashboard": "Dashboard"
+  "dashboard": "Dashboard",
+  "languages": {
+    "pl": "Polski",
+    "en": "Angielski"
+  },
+  "boolean": {
+    "false": "Nie",
+    "true": "Tak"
+  }
 }
