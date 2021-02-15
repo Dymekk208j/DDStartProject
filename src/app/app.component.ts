@@ -19,8 +19,6 @@ export class AppComponent {
     public translateService: TranslateService,
     private router: Router
   ) {
-    console.log(router); //TODO: Do usuniećia
-
     translateService.addLangs(['en', 'pl']);
     translateService.setDefaultLang('en');
     const browserLanguage = translateService.getBrowserLang();

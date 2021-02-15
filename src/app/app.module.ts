@@ -1,3 +1,4 @@
+import { MatPaginatorI18nService } from './shared/MatPaginatorI18n.Service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AdminPanelModule } from './admin-panel/admin-panel.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -17,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,7 +48,12 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useClass: MatPaginatorI18nService,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

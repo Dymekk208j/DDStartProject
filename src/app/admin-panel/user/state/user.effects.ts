@@ -24,4 +24,18 @@ export class UserEffects {
       )
     );
   });
+
+  blockUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.blockUser),
+      mergeMap((request) =>
+        this.userService.blockUser(request.id).pipe(
+          map(() => UserActions.blockUserSuccess({ id: request.id })),
+          catchError((error) =>
+            of(UserActions.blockUserError({ errors: error }))
+          )
+        )
+      )
+    );
+  });
 }

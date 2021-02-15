@@ -9,6 +9,14 @@
   "users-management": "Users management",
   "roles-management": "Roles management",
   "roles": "Roles",
+  "paginator": {
+    "Items-per-page:": "Items per page:",
+    "Next-page": "Next page",
+    "Previous-page": "Previous page",
+    "First-page": "First page",
+    "Last-page": "Last page",
+    "of": "of"
+  },
   "users": {
     "list": {
       "actions": {
@@ -36,6 +44,9 @@
       "Administrator": "Administrator",
       "Moderator": "Moderator",
       "User": "User"
+    },
+    "details": {
+      "details": "Details"
     }
   },
   "account-settings": "Account settings",

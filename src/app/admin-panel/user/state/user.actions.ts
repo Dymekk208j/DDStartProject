@@ -22,3 +22,18 @@ export const fetchUsersError = createAction(
   '[Admin] Fetch users error',
   props<{ errors: string }>()
 );
+
+export const blockUser = createAction(
+  '[Admin] Block users',
+  props<{ id: string }>()
+);
+
+export const blockUserSuccess = createAction(
+  '[Admin] Block users success',
+  props<{ id: string }>()
+);
+
+export const blockUserError = createAction(
+  '[Admin] Block users error',
+  props<{ errors: string }>()
+);

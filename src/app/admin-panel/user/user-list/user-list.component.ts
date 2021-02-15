@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ActionsCellRenderer } from './ActionsCellRenderer/ActionsCellRenderer';
 import { FilterHelper } from './../../../shared/helpers/FilterHelper';
 import { State } from './../../../state/app.state';
@@ -30,7 +31,8 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private store: Store<State>,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {
     this.translate.onLangChange.subscribe(() => {
       this.gridOptions.api.refreshHeader();
@@ -42,12 +44,6 @@ export class UserListComponent implements OnInit {
     this.userList$ = this.store.select(getUsers);
 
     this.columnDefs = [
-      {
-        field: 'Id',
-        headerName: 'Id',
-        headerValueGetter: this.localizeHeader.bind(this),
-        sortable: true,
-      },
       {
         field: 'Name',
         headerName: 'Name',
@@ -120,13 +116,14 @@ export class UserListComponent implements OnInit {
         cellRenderer: 'actionsCellRenderer',
         cellRendererParams: {
           onDetailsClick: (id: string) => {
-            alert(`${id} was clicked onDetailsClick`);
+            this.router.navigateByUrl(`/Admin/Users/Details/${id}`);
           },
           onEditClick: (id: string) => {
             alert(`${id} was clicked onEditClick`);
           },
           onBlockClick: (id: string) => {
-            alert(`${id} was clicked onBlockClick`);
+            this.store.dispatch(UserActions.blockUser({ id: id }));
+            this.gridOptions.api.refreshServerSideStore({ purge: true });
           },
           onUnblockClick: (id: string) => {
             alert(`${id} was clicked onUnblockClick`);
@@ -143,21 +140,25 @@ export class UserListComponent implements OnInit {
 
     this.gridOptions = <GridOptions>{
       enableRangeSelection: true,
-      rowModelType: 'serverSide',
       columnDefs: this.columnDefs,
       onFirstDataRendered(params) {
         params.api.sizeColumnsToFit();
       },
+      rowModelType: 'serverSide',
+      serverSideStoreType: 'partial',
       serverSideDatasource: this.dataSource,
       frameworkComponents: {
         actionsCellRenderer: ActionsCellRenderer,
       },
+      cacheBlockSize: 10,
+      pagination: true,
+      paginationPageSize: 10,
+      suppressPaginationPanel: true,
     };
   }
 
   dataSource = {
     getRows: (params: IServerSideGetRowsParams) => {
-      console.log('params', params);
       this.store.dispatch(UserActions.fetchUsers({ request: params.request }));
 
       let rowData: LoadUsersSuccessParams;

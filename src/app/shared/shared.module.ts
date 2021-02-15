@@ -7,14 +7,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CustomPaginationComponent } from './custom-pagination/custom-pagination.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
-  declarations: [],
+  declarations: [CustomPaginationComponent],
   imports: [
     HttpClientModule,
     MatButtonModule,
     MatTooltipModule,
     MatIconModule,
+    MatPaginatorModule,
     CommonModule,
     RouterModule,
     FormsModule,
@@ -27,6 +30,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     TranslateModule,
     RouterModule,
     FormsModule,
+    CustomPaginationComponent,
   ],
 })
 export class SharedModule {}

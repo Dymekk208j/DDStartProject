@@ -8,6 +8,14 @@
   "account-management": "Zarządzanie kontami",
   "roles": "Role",
   "roles-management": "Zarządzanie rolami",
+  "paginator": {
+    "Items-per-page:": "Wierszy na stronę:",
+    "Next-page": "Kolejna strona",
+    "Previous-page": "Poprzednia strona",
+    "First-page": "Pierwsza strona",
+    "Last-page": "Ostatnia storna",
+    "of": "z"
+  },
   "users": {
     "list": {
       "actions": {
@@ -35,6 +43,9 @@
       "Administrator": "Administrator",
       "Moderator": "Moderator",
       "User": "Użytkownik"
+    },
+    "details": {
+      "details": "Szczegóły"
     }
   },
   "users-management": "Zarządzanie użytkownikami",

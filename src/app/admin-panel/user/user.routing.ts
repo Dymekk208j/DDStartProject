@@ -1,3 +1,4 @@
+import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserComponent } from './user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,11 @@ const routes: Routes = [
         path: 'List',
         component: UserListComponent,
         data: { breadcrumbs: 'users.list.list' },
+      },
+      {
+        path: 'Details/:Id',
+        component: UserDetailsComponent,
+        data: { breadcrumbs: 'users.details.details' },
       },
     ],
   },
