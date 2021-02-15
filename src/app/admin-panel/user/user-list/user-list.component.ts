@@ -17,7 +17,7 @@ import {
 import { LoadUsersSuccessParams } from '../models/LoadUsersSuccessParams';
 import { TranslateService } from '@ngx-translate/core';
 import { Role } from '../models/role';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
   selector: 'dds-user-list',
