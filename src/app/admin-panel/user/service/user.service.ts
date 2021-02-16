@@ -2,7 +2,6 @@ import { LoadUsersSuccessParams } from './../models/LoadUsersSuccessParams';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Role } from '../models/role';
 import { IServerSideGetRowsRequest } from 'ag-grid-community';
 import { User } from '../models/user';
 
@@ -36,6 +35,12 @@ export class UserService {
       if (id) {
         subscriber.next(true);
       } else throw 'API call error';
+    });
+  }
+
+  fetchUserBlockReasons(): Observable<string[]> {
+    return new Observable<string[]>((subscriber) => {
+      subscriber.next(['Powód 1', 'Powód 2', 'Powód 3']);
     });
   }
 }

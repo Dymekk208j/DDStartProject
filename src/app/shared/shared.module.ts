@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CustomPaginationComponent } from './custom-pagination/custom-pagination.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [CustomPaginationComponent],
@@ -21,6 +23,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CommonModule,
     RouterModule,
     FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
     MatButtonModule,
@@ -31,6 +35,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RouterModule,
     FormsModule,
     CustomPaginationComponent,
+    MatFormFieldModule,
+    MatInputModule,
   ],
 })
 export class SharedModule {}

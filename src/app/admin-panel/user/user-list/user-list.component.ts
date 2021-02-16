@@ -1,3 +1,4 @@
+import { User } from './../models/user';
 import { Router } from '@angular/router';
 import { ActionsCellRenderer } from './ActionsCellRenderer/ActionsCellRenderer';
 import { FilterHelper } from './../../../shared/helpers/FilterHelper';
@@ -18,6 +19,8 @@ import { LoadUsersSuccessParams } from '../models/LoadUsersSuccessParams';
 import { TranslateService } from '@ngx-translate/core';
 import { Role } from '../models/role';
 import moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { BlockUserDialogComponent } from './components/block-user-dialog/block-user-dialog.component';
 
 @Component({
   selector: 'dds-user-list',
@@ -32,7 +35,8 @@ export class UserListComponent implements OnInit {
   constructor(
     private store: Store<State>,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     this.translate.onLangChange.subscribe(() => {
       this.gridOptions.api.refreshHeader();
@@ -114,6 +118,8 @@ export class UserListComponent implements OnInit {
         suppressMenu: true,
         suppressMovable: true,
         cellRenderer: 'actionsCellRenderer',
+        minWidth: 240,
+        maxWidth: 240,
         cellRendererParams: {
           onDetailsClick: (id: string) => {
             this.router.navigateByUrl(`/Admin/Users/Details/${id}`);
@@ -121,9 +127,18 @@ export class UserListComponent implements OnInit {
           onEditClick: (id: string) => {
             alert(`${id} was clicked onEditClick`);
           },
-          onBlockClick: (id: string) => {
-            this.store.dispatch(UserActions.blockUser({ id: id }));
-            this.gridOptions.api.refreshServerSideStore({ purge: true });
+          onBlockClick: (user: User) => {
+            const dialogRef = this.dialog.open(BlockUserDialogComponent, {
+              width: '500px',
+              height: '350px',
+              data: user,
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              console.log('The dialog was closed');
+              //TODO: Dodać wykrywanie czy został wciśnięty przycisk zablokuj
+              // this.store.dispatch(UserActions.blockUser({ id: id }));
+              // this.gridOptions.api.refreshServerSideStore({ purge: true });
+            });
           },
           onUnblockClick: (id: string) => {
             alert(`${id} was clicked onUnblockClick`);

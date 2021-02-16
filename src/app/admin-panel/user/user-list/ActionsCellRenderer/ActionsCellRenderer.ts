@@ -36,7 +36,7 @@ export class ActionsCellRenderer implements ICellRendererAngularComp {
   }
 
   btnBlockClickedHandler() {
-    this.params.onBlockClick(this.params.data.Id);
+    this.params.onBlockClick(this.params.data);
   }
 
   btnUnblockClickedHandler() {

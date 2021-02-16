@@ -7,3 +7,8 @@ export const getUsers = createSelector(
   getUserFeatureState,
   (sliceState) => sliceState.loadUsersSuccessParams
 );
+
+export const getUserBlockReasons = createSelector(
+  getUserFeatureState,
+  (sliceState) => sliceState.blockUserReasons
+);

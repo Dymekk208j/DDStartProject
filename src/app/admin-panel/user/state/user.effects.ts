@@ -38,4 +38,20 @@ export class UserEffects {
       )
     );
   });
+
+  fetchUserBlockReasons$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.fetchBlockUserReasons),
+      mergeMap(() =>
+        this.userService.fetchUserBlockReasons().pipe(
+          map((result) =>
+            UserActions.fetchBlockUserReasonsSuccess({ reasons: result })
+          ),
+          catchError((error) =>
+            of(UserActions.fetchBlockUserReasonsError({ errors: error }))
+          )
+        )
+      )
+    );
+  });
 }

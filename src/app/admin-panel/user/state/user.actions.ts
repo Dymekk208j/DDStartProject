@@ -3,10 +3,10 @@ import { IServerSideGetRowsRequest } from 'ag-grid-community';
 import { LoadUsersSuccessParams } from '../models/LoadUsersSuccessParams';
 import { User } from '../models/user';
 
-export const setUsers = createAction(
-  '[Admin] Set users',
-  props<{ users: User[] }>()
-);
+// export const setUsers = createAction(
+//   '[Admin] Set users',
+//   props<{ users: User[] }>()
+// );
 
 export const fetchUsers = createAction(
   '[Admin] Fetch users',
@@ -35,5 +35,19 @@ export const blockUserSuccess = createAction(
 
 export const blockUserError = createAction(
   '[Admin] Block users error',
+  props<{ errors: string }>()
+);
+
+export const fetchBlockUserReasons = createAction(
+  '[Admin] Fetch block user reasons'
+);
+
+export const fetchBlockUserReasonsSuccess = createAction(
+  '[Admin] Fetch block user reasons success',
+  props<{ reasons: string[] }>()
+);
+
+export const fetchBlockUserReasonsError = createAction(
+  '[Admin] Fetch block user reasons error',
   props<{ errors: string }>()
 );

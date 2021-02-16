@@ -8,15 +8,15 @@ import { User } from '../models/user';
 
 export const userReducer = createReducer<IUserState>(
   UserStateInitialState,
-  on(
-    AdminPanelActions.setUsers,
-    (state, params): IUserState => {
-      return {
-        ...state,
-        users: params.users,
-      };
-    }
-  ),
+  // on(
+  //   AdminPanelActions.setUsers,
+  //   (state, params): IUserState => {
+  //     return {
+  //       ...state,
+  //       users: params.users,
+  //     };
+  //   }
+  // ),
   on(
     AdminPanelActions.fetchUsersSuccess,
     (state, params): IUserState => {
@@ -63,6 +63,24 @@ export const userReducer = createReducer<IUserState>(
       return {
         ...state,
         error: params.errors,
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.fetchBlockUserReasonsSuccess,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        blockUserReasons: params.reasons,
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.fetchBlockUserReasonsError,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        error: 'error',
       };
     }
   )

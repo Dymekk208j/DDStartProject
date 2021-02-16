@@ -1,3 +1,4 @@
+import { MatSelectModule } from '@angular/material/select';
 import { UserRoutingModule } from './user.routing';
 import { userReducer } from './state/user.reducer';
 import { MatTableModule } from '@angular/material/table';
@@ -17,9 +18,18 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { AgGridModule } from 'ag-grid-angular';
 import { ActionsCellRenderer } from './user-list/ActionsCellRenderer/ActionsCellRenderer';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { BlockUserDialogComponent } from './user-list/components/block-user-dialog/block-user-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [UserComponent, UserListComponent, ActionsCellRenderer, UserDetailsComponent],
+  declarations: [
+    BlockUserDialogComponent,
+    UserComponent,
+    UserListComponent,
+    ActionsCellRenderer,
+    UserDetailsComponent,
+  ],
   imports: [
     UserRoutingModule,
     CommonModule,
@@ -28,7 +38,10 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     SharedModule,
     MatTableModule,
     MatSortModule,
+    MatDialogModule,
     MatPaginatorModule,
+    MatSelectModule,
+    MatCheckboxModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
