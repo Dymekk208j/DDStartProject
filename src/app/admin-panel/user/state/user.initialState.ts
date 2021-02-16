@@ -4,4 +4,6 @@ export const UserStateInitialState: IUserState = {
   loadUsersSuccessParams: null,
   error: '',
   blockUserReasons: [],
+  addBlockReasonResult: null,
+  blockUserResult: null,
 };

@@ -46,6 +46,19 @@
     },
     "details": {
       "details": "Szczegóły"
+    },
+    "block-user-dialog": {
+      "there-was-a-problem-blocking-the-user": "Wystąpił problem podczas blokowania użytkownika!",
+      "the-user-has-been-properly-blocked": "Użytkownik został poprawnie zablokowany!",
+      "the-blocking-template-was-added-correctly": "Szablon blokowania został poprawnie dodany!",
+      "there-was-a-problem-adding-the-blocking-reason-template": "Wystąpił problem podczas dodawania szablonu powodu blokowania!",
+      "block-user": "Zablokuj użytkownika",
+      "enter-a-reason-for-the-block": "Podaj przyczynę blokady",
+      "block-reason": "Przyczyna blokady",
+      "save-as-blocking-reason-template": "Zapisz jako szablon powodu blokady",
+      "or-select-from-list": "lub wybierz z listy",
+      "saved-reasons": "Zapisane powody",
+      "reason": "Powód"
     }
   },
   "users-management": "Zarządzanie użytkownikami",
@@ -60,5 +73,9 @@
   "boolean": {
     "false": "Nie",
     "true": "Tak"
+  },
+  "actions": {
+    "cancel": "Anuluj",
+    "block": "Zablokuj"
   }
 }

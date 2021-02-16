@@ -20,6 +20,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 
+import { ToastrModule } from 'ngx-toastr';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -47,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

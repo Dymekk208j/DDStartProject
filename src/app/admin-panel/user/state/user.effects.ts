@@ -12,8 +12,8 @@ export class UserEffects {
   fetchUsers$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.fetchUsers),
-      mergeMap((test) =>
-        this.userService.fetchUserList(test.request).pipe(
+      mergeMap((params) =>
+        this.userService.fetchUserList(params.request).pipe(
           map((result) =>
             UserActions.fetchUsersSuccess({ loadUsersSuccessParams: result })
           ),
@@ -28,9 +28,9 @@ export class UserEffects {
   blockUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.blockUser),
-      mergeMap((request) =>
-        this.userService.blockUser(request.id).pipe(
-          map(() => UserActions.blockUserSuccess({ id: request.id })),
+      mergeMap((params) =>
+        this.userService.blockUser(params.request).pipe(
+          map(() => UserActions.blockUserSuccess({ request: params.request })),
           catchError((error) =>
             of(UserActions.blockUserError({ errors: error }))
           )
@@ -49,6 +49,20 @@ export class UserEffects {
           ),
           catchError((error) =>
             of(UserActions.fetchBlockUserReasonsError({ errors: error }))
+          )
+        )
+      )
+    );
+  });
+
+  addBlockReason$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.addBlockReason),
+      mergeMap((params) =>
+        this.userService.addBlockReason(params.reason).pipe(
+          map((result) => UserActions.addBlockReasonSuccess()),
+          catchError((error) =>
+            of(UserActions.addBlockReasonError({ errors: error }))
           )
         )
       )

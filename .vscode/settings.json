@@ -8,7 +8,8 @@
         "ddsoftware",
         "dropdownlist",
         "dropdowns",
-        "ngrx"
+        "ngrx",
+        "toastr"
     ],
     "i18n-ally.sourceLanguage": "en"
 }

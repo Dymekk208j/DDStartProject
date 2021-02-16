@@ -1,40 +1,49 @@
-<h1 mat-dialog-title>Zablokuj użytkownika</h1>
+<h1 mat-dialog-title>{{ "users.block-user-dialog.block-user" | translate }}</h1>
 <div mat-dialog-content>
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <p>Wprowadź powód blokady</p>
+        <p>
+          {{
+            "users.block-user-dialog.enter-a-reason-for-the-block" | translate
+          }}
+        </p>
       </div>
 
       <div class="col-12">
         <mat-form-field class="w-100">
-          <mat-label>Przyczyna blokady</mat-label>
+          <mat-label>{{
+            "users.block-user-dialog.reason" | translate
+          }}</mat-label>
           <textarea
             matInput
             cdkTextareaAutosize
             #autosize="cdkTextareaAutosize"
             cdkAutosizeMinRows="1"
             cdkAutosizeMaxRows="5"
-            [(ngModel)]="ReasonText"
+            [(ngModel)]="reasonText"
           ></textarea>
         </mat-form-field>
       </div>
 
       <div class="col-12">
         <section class="float-right">
-          <mat-checkbox color="primary"
-            >Zapisz jako zdefiniowany powód.</mat-checkbox
-          >
+          <mat-checkbox color="primary" [(ngModel)]="saveAsTemplate">{{
+            "users.block-user-dialog.save-as-blocking-reason-template"
+              | translate
+          }}</mat-checkbox>
         </section>
       </div>
 
       <div class="col-12">
-        <p>Albo wybierz z listy</p>
+        <p>{{ "users.block-user-dialog.or-select-from-list" | translate }}</p>
       </div>
 
       <div class="col-12">
         <mat-form-field class="w-100">
-          <mat-label>Zapisane powody</mat-label>
+          <mat-label>{{
+            "users.block-user-dialog.saved-reasons" | translate
+          }}</mat-label>
           <mat-select
             #fontSize
             value="-1"
@@ -53,9 +62,10 @@
   </div>
 </div>
 <div mat-dialog-actions class="float-right">
-  <button mat-raised-button (click)="onNoClick()">Anuluj</button>
-  <button mat-raised-button color="warn" (click)="onNoClick()">
-    Zablokuj
+  <button mat-raised-button (click)="onNoClick()">
+    {{ "actions.cancel" | translate }}
   </button>
-  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+  <button mat-raised-button color="warn" (click)="onBlockClick()">
+    {{ "actions.block" | translate }}
+  </button>
 </div>

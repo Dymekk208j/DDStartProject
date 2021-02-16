@@ -136,7 +136,6 @@ export class UserListComponent implements OnInit {
             dialogRef.afterClosed().subscribe((result) => {
               console.log('The dialog was closed');
               //TODO: Dodać wykrywanie czy został wciśnięty przycisk zablokuj
-              // this.store.dispatch(UserActions.blockUser({ id: id }));
               // this.gridOptions.api.refreshServerSideStore({ purge: true });
             });
           },

@@ -5,6 +5,8 @@
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 
+@import "~ngx-toastr/toastr-bs4-alert";
+
 html,
 body {
   height: 100%;

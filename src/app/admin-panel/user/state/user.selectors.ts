@@ -12,3 +12,13 @@ export const getUserBlockReasons = createSelector(
   getUserFeatureState,
   (sliceState) => sliceState.blockUserReasons
 );
+
+export const getAddBlockReasonResult = createSelector(
+  getUserFeatureState,
+  (sliceState) => sliceState.addBlockReasonResult
+);
+
+export const getBlockUserResult = createSelector(
+  getUserFeatureState,
+  (sliceState) => sliceState.blockUserResult
+);

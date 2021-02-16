@@ -1,22 +1,11 @@
-import { LoadUsersSuccessParams } from './../models/LoadUsersSuccessParams';
 import { UserStateInitialState } from './user.initialState';
 import { createReducer, on } from '@ngrx/store';
 import * as AdminPanelActions from './user.actions';
 import { IUserState } from './user.state';
-import { state } from '@angular/animations';
 import { User } from '../models/user';
 
 export const userReducer = createReducer<IUserState>(
   UserStateInitialState,
-  // on(
-  //   AdminPanelActions.setUsers,
-  //   (state, params): IUserState => {
-  //     return {
-  //       ...state,
-  //       users: params.users,
-  //     };
-  //   }
-  // ),
   on(
     AdminPanelActions.fetchUsersSuccess,
     (state, params): IUserState => {
@@ -36,6 +25,15 @@ export const userReducer = createReducer<IUserState>(
     }
   ),
   on(
+    AdminPanelActions.blockUser,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        blockUserResult: null,
+      };
+    }
+  ),
+  on(
     AdminPanelActions.blockUserSuccess,
     (state, params): IUserState => {
       let loadUsersSuccessParams = JSON.parse(
@@ -43,7 +41,7 @@ export const userReducer = createReducer<IUserState>(
       );
 
       let index: number = loadUsersSuccessParams.rowData.findIndex(
-        (e: User) => e.Id == params.id
+        (e: User) => e.Id == params.request.user.Id
       );
 
       let user: User = Object.assign({}, loadUsersSuccessParams.rowData[index]);
@@ -53,6 +51,7 @@ export const userReducer = createReducer<IUserState>(
 
       return {
         ...state,
+        blockUserResult: true,
         loadUsersSuccessParams: loadUsersSuccessParams,
       };
     }
@@ -62,6 +61,7 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
+        blockUserResult: false,
         error: params.errors,
       };
     }
@@ -80,6 +80,45 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
+        error: 'error',
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.addBlockReason,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        addBlockReasonResult: null,
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.addBlockReasonSuccess,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        addBlockReasonResult: true,
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.addBlockReasonError,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        addBlockReasonResult: false,
+        error: params.errors,
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.resetStatuses,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        addBlockReasonResult: null,
+        blockUserResult: null,
         error: 'error',
       };
     }

@@ -9,4 +9,6 @@ export interface IUserState {
   loadUsersSuccessParams: LoadUsersSuccessParams;
   blockUserReasons: string[];
   error: string;
+  addBlockReasonResult: boolean;
+  blockUserResult: boolean;
 }

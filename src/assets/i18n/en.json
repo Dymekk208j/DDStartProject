@@ -47,6 +47,19 @@
     },
     "details": {
       "details": "Details"
+    },
+    "block-user-dialog": {
+      "the-user-has-been-properly-blocked": "The user has been properly blocked!",
+      "there-was-a-problem-blocking-the-user": "There was a problem blocking the user!",
+      "the-blocking-template-was-added-correctly": "The blocking template was added correctly!",
+      "there-was-a-problem-adding-the-blocking-reason-template": "There was a problem adding the blocking reason template!",
+      "block-user": "Block user",
+      "enter-a-reason-for-the-block": "Enter a reason for the block",
+      "block-reason": "Block reason",
+      "save-as-blocking-reason-template": "Save as blocking reason template",
+      "or-select-from-list": "or select from list",
+      "saved-reasons": "Saved reasons",
+      "reason": "Reason"
     }
   },
   "account-settings": "Account settings",
@@ -60,5 +73,9 @@
   "boolean": {
     "true": "Yes",
     "false": "No"
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "block": "Block"
   }
 }

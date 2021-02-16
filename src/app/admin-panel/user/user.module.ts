@@ -21,6 +21,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { BlockUserDialogComponent } from './user-list/components/block-user-dialog/block-user-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDialogModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatSnackBarModule,
     MatCheckboxModule,
     TranslateModule.forChild({
       loader: {
