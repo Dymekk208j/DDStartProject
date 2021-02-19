@@ -46,7 +46,7 @@ export class UserService {
 
   fetchUserBlockReasons(): Observable<string[]> {
     //TODO: dodać obsługę this.translate.currentLang
-
+    //TODO: Testowe zadanie
     return new Observable<string[]>((subscriber) => {
       subscriber.next(['Powód 1', 'Powód 2', 'Powód 3']);
     });
