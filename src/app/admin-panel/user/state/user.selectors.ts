@@ -22,3 +22,8 @@ export const getBlockUserResult = createSelector(
   getUserFeatureState,
   (sliceState) => sliceState.blockUserResult
 );
+
+export const getRemoveUserResult = createSelector(
+  getUserFeatureState,
+  (sliceState) => sliceState.removeUserResult
+);

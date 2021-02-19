@@ -6,4 +6,5 @@ export const UserStateInitialState: IUserState = {
   blockUserReasons: [],
   addBlockReasonResult: null,
   blockUserResult: null,
+  removeUserResult: null,
 };

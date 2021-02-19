@@ -8,6 +8,7 @@ import { User } from '../models/user';
 import userJsonData from './users.json';
 import { BlockUserRequest } from '../../shared/dto/requests/blockUserRequest';
 import { TranslateService } from '@ngx-translate/core';
+import { RemoveUserRequest } from '../../shared/dto/requests/removeUserRequest';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -35,7 +36,7 @@ export class UserService {
 
   blockUser(request: BlockUserRequest): Observable<boolean> {
     //TODO: dodać obsługę this.translate.currentLang
-    request.languageCode = this.translate.currentLang;
+    // request.languageCode = this.translate.currentLang; // TODO: nie działa
 
     return new Observable<boolean>((subscriber) => {
       if (request) {
@@ -55,6 +56,17 @@ export class UserService {
   addBlockReason(reason: string): Observable<boolean> {
     return new Observable<boolean>((subscriber) => {
       if (reason.length > 0) {
+        subscriber.next(true);
+      } else throw 'API call error';
+    });
+  }
+
+  removeUser(request: RemoveUserRequest): Observable<boolean> {
+    //TODO: dodać obsługę this.translate.currentLang
+    // request.languageCode = this.translate.currentLang; // TODO: nie działa
+
+    return new Observable<boolean>((subscriber) => {
+      if (request) {
         subscriber.next(true);
       } else throw 'API call error';
     });

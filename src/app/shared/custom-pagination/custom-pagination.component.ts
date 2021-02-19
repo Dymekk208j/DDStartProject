@@ -9,10 +9,10 @@ import { GridOptions } from 'ag-grid-community';
 })
 export class CustomPaginationComponent implements OnInit {
   @Input() gridOptions: GridOptions;
-  @Input() pageSizeOptions: number[] = [10, 25, 50, 100];
+  @Input() pageSizeOptions: number[] = [10, 20, 25, 50, 100];
 
   page: number;
-  pageSize: number;
+  pageSize: number = 20;
   totalPages: number;
   rowCount: number;
   pageEvent: PageEvent = new PageEvent();

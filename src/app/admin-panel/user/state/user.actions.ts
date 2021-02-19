@@ -1,3 +1,4 @@
+import { RemoveUserRequest } from './../../shared/dto/requests/removeUserRequest';
 import { BlockUserRequest } from './../../shared/dto/requests/blockUserRequest';
 import { createAction, props } from '@ngrx/store';
 import { IServerSideGetRowsRequest } from 'ag-grid-community';
@@ -62,3 +63,18 @@ export const addBlockReasonError = createAction(
 );
 
 export const resetStatuses = createAction('[User list] Reset statuses');
+
+export const removeUser = createAction(
+  '[User list] Remove user',
+  props<{ request: RemoveUserRequest }>()
+);
+
+export const removeUserSuccess = createAction(
+  '[User list] Remove user success',
+  props<{ request: RemoveUserRequest }>()
+);
+
+export const removeUserError = createAction(
+  '[User list] Remove user error',
+  props<{ errors: string }>()
+);

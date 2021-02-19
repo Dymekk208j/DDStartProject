@@ -1,3 +1,3 @@
 export abstract class BaseRequest {
-  public languageCode: string;
+  public languageCode?: string = 'Pl';
 }

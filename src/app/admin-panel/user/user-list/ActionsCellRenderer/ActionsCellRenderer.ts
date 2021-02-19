@@ -31,10 +31,6 @@ export class ActionsCellRenderer implements ICellRendererAngularComp {
     this.params.onDetailsClick(this.params.data.Id);
   }
 
-  btnEditClickedHandler() {
-    this.params.onEditClick(this.params.data.Id);
-  }
-
   btnBlockClickedHandler() {
     this.params.onBlockClick(this.params.data);
   }
@@ -44,10 +40,6 @@ export class ActionsCellRenderer implements ICellRendererAngularComp {
   }
 
   btnRemoveClickedHandler() {
-    this.params.onRemoveClick(this.params.data.Id);
-  }
-
-  btnResendClickedHandler() {
-    this.params.onResendClick(this.params.data.Id);
+    this.params.onRemoveClick(this.params.data);
   }
 }

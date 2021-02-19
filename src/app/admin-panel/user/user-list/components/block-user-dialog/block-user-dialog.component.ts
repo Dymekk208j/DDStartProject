@@ -22,7 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./block-user-dialog.component.scss'],
 })
 export class BlockUserDialogComponent implements OnInit {
-  reasonText: string = 'test';
+  reasonText: string = '';
   reasons$: Observable<string[]>;
   saveAsTemplate: boolean = false;
   getAddBlockReasonResult$: Observable<boolean>;

@@ -22,10 +22,12 @@ import { BlockUserDialogComponent } from './user-list/components/block-user-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RemoveUserDialogComponent } from './user-list/components/remove-user-dialog/remove-user-dialog.component';
 
 @NgModule({
   declarations: [
     BlockUserDialogComponent,
+    RemoveUserDialogComponent,
     UserComponent,
     UserListComponent,
     ActionsCellRenderer,

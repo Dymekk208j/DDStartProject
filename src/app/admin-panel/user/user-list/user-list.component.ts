@@ -21,6 +21,7 @@ import { Role } from '../models/role';
 import moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { BlockUserDialogComponent } from './components/block-user-dialog/block-user-dialog.component';
+import { RemoveUserDialogComponent } from './components/remove-user-dialog/remove-user-dialog.component';
 
 @Component({
   selector: 'dds-user-list',
@@ -118,8 +119,8 @@ export class UserListComponent implements OnInit {
         suppressMenu: true,
         suppressMovable: true,
         cellRenderer: 'actionsCellRenderer',
-        minWidth: 240,
-        maxWidth: 240,
+        minWidth: 160,
+        maxWidth: 160,
         cellRendererParams: {
           onDetailsClick: (id: string) => {
             this.router.navigateByUrl(`/Admin/Users/Details/${id}`);
@@ -142,8 +143,17 @@ export class UserListComponent implements OnInit {
           onUnblockClick: (id: string) => {
             alert(`${id} was clicked onUnblockClick`);
           },
-          onRemoveClick: (id: string) => {
-            alert(`${id} was clicked onRemoveClick`);
+          onRemoveClick: (user: User) => {
+            const dialogRef = this.dialog.open(RemoveUserDialogComponent, {
+              width: '500px',
+              height: '250px',
+              data: user,
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              console.log('The dialog was closed');
+              //TODO: Dodać wykrywanie czy został wciśnięty przycisk zablokuj
+              // this.gridOptions.api.refreshServerSideStore({ purge: true });
+            });
           },
           onResendClick: (id: string) => {
             alert(`${id} was clicked onResendClick`);
@@ -158,16 +168,21 @@ export class UserListComponent implements OnInit {
       onFirstDataRendered(params) {
         params.api.sizeColumnsToFit();
       },
+      onPaginationChanged(params) {
+        params.api.sizeColumnsToFit();
+      },
       rowModelType: 'serverSide',
       serverSideStoreType: 'partial',
       serverSideDatasource: this.dataSource,
       frameworkComponents: {
         actionsCellRenderer: ActionsCellRenderer,
       },
-      cacheBlockSize: 10,
+      cacheBlockSize: 20,
       pagination: true,
-      paginationPageSize: 10,
+      paginationPageSize: 20,
       suppressPaginationPanel: true,
+      getContextMenuItems: this.getContextMenuItems,
+      rowHeight: 38,
     };
   }
 
@@ -188,5 +203,9 @@ export class UserListComponent implements OnInit {
     let headerIdentifier = parameters.colDef.headerName;
 
     return this.translate.instant('users.header.' + headerIdentifier);
+  }
+
+  public getContextMenuItems() {
+    return ['copy'];
   }
 }

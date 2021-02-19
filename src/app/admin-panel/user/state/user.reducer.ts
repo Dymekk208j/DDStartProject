@@ -119,7 +119,38 @@ export const userReducer = createReducer<IUserState>(
         ...state,
         addBlockReasonResult: null,
         blockUserResult: null,
+        removeUserResult: null,
         error: 'error',
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.removeUser,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        removeUserResult: null,
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.removeUserSuccess,
+    (state, params): IUserState => {
+      //todo
+
+      return {
+        ...state,
+        removeUserResult: true,
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.removeUserError,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        removeUserResult: false,
+        error: params.errors,
       };
     }
   )

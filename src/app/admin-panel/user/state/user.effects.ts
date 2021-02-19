@@ -68,4 +68,18 @@ export class UserEffects {
       )
     );
   });
+
+  removeUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.removeUser),
+      mergeMap((params) =>
+        this.userService.removeUser(params.request).pipe(
+          map(() => UserActions.removeUserSuccess({ request: params.request })),
+          catchError((error) =>
+            of(UserActions.removeUserError({ errors: error }))
+          )
+        )
+      )
+    );
+  });
 }

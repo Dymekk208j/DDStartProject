@@ -11,4 +11,5 @@ export interface IUserState {
   error: string;
   addBlockReasonResult: boolean;
   blockUserResult: boolean;
+  removeUserResult: boolean;
 }
