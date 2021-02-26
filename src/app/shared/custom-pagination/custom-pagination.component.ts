@@ -24,16 +24,24 @@ export class CustomPaginationComponent implements OnInit {
   }
 
   onPaginatorEvent(pageEvent: PageEvent) {
-    if (this.pageEvent.pageSize !== pageEvent.pageSize)
-      this.gridOptions.api.paginationSetPageSize(pageEvent.pageSize);
+    if (this.gridOptions && this.gridOptions.api) {
+      if (this.pageEvent.pageSize !== pageEvent.pageSize)
+        this.gridOptions.api.paginationSetPageSize(pageEvent.pageSize);
 
-    this.pageEvent = pageEvent;
+      this.pageEvent = pageEvent;
 
-    if (pageEvent.previousPageIndex > this.pageEvent.pageIndex)
-      this.gridOptions.api.paginationGoToPreviousPage();
+      if (
+        pageEvent.previousPageIndex &&
+        pageEvent.previousPageIndex > this.pageEvent.pageIndex
+      )
+        this.gridOptions.api.paginationGoToPreviousPage();
 
-    if (pageEvent.previousPageIndex < this.pageEvent.pageIndex)
-      this.gridOptions.api.paginationGoToNextPage();
+      if (
+        pageEvent.previousPageIndex &&
+        pageEvent.previousPageIndex < this.pageEvent.pageIndex
+      )
+        this.gridOptions.api.paginationGoToNextPage();
+    }
     return pageEvent;
   }
 

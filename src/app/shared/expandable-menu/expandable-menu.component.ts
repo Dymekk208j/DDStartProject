@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./expandable-menu.component.scss'],
 })
 export class ExpandableMenuComponent {
-  @Input() Items: MenuItem[];
-  @Input() Header: string;
-  @Input() HeaderIcon: string;
+  @Input() Items!: MenuItem[];
+  @Input() Header!: string;
+  @Input() HeaderIcon!: string | undefined;
 }

@@ -7,12 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-details.component.scss'],
 })
 export class UserDetailsComponent implements OnInit {
-  public Id: string;
+  public Id: string = '';
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    this.Id = routeParams.get('Id');
+    let id = routeParams.get('Id');
+    this.Id = id ? id : '';
   }
 }

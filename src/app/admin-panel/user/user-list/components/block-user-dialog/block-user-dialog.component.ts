@@ -25,8 +25,8 @@ export class BlockUserDialogComponent implements OnInit {
   reasonText: string = '';
   reasons$: Observable<string[]>;
   saveAsTemplate: boolean = false;
-  getAddBlockReasonResult$: Observable<boolean>;
-  getBlockUserResult$: Observable<boolean>;
+  getAddBlockReasonResult$: Observable<boolean | null>;
+  getBlockUserResult$: Observable<boolean | null>;
 
   constructor(
     private store: Store<State>,

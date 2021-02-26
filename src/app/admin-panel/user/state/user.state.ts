@@ -9,7 +9,7 @@ export interface IUserState {
   loadUsersSuccessParams: LoadUsersSuccessParams;
   blockUserReasons: string[];
   error: string;
-  addBlockReasonResult: boolean;
-  blockUserResult: boolean;
-  removeUserResult: boolean;
+  addBlockReasonResult: boolean | null;
+  blockUserResult: boolean | null;
+  removeUserResult: boolean | null;
 }

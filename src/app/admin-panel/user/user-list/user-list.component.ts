@@ -22,6 +22,7 @@ import moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { BlockUserDialogComponent } from './components/block-user-dialog/block-user-dialog.component';
 import { RemoveUserDialogComponent } from './components/remove-user-dialog/remove-user-dialog.component';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'dds-user-list',
@@ -29,9 +30,9 @@ import { RemoveUserDialogComponent } from './components/remove-user-dialog/remov
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  userList$: Observable<LoadUsersSuccessParams>;
-  columnDefs: ColDef[];
-  gridOptions: GridOptions;
+  userList$!: Observable<LoadUsersSuccessParams>;
+  columnDefs!: ColDef[];
+  gridOptions!: GridOptions;
 
   constructor(
     private store: Store<State>,
@@ -40,8 +41,10 @@ export class UserListComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.translate.onLangChange.subscribe(() => {
-      this.gridOptions.api.refreshHeader();
-      this.gridOptions.api.redrawRows();
+      if (this!.gridOptions.api) {
+        this!.gridOptions.api.refreshHeader();
+        this!.gridOptions.api.redrawRows();
+      }
     });
   }
 
@@ -66,7 +69,7 @@ export class UserListComponent implements OnInit {
         sortable: true,
         filter: true,
         filterParams: {
-          values: (params) => {
+          values: (params: any) => {
             var values = [];
             for (let item in Role) {
               if (isNaN(Number(item))) {
@@ -190,11 +193,14 @@ export class UserListComponent implements OnInit {
     getRows: (params: IServerSideGetRowsParams) => {
       this.store.dispatch(UserActions.fetchUsers({ request: params.request }));
 
-      let rowData: LoadUsersSuccessParams;
-      this.userList$.subscribe((variants) => (rowData = variants));
+      let rowData: LoadUsersSuccessParams = new LoadUsersSuccessParams();
+      this.userList$
+        .pipe(take(1))
+        .subscribe((variants) => (rowData = variants));
 
       var rowsThisPage = rowData.rowData;
-      var lastRow = rowData.rowCount;
+      var lastRow = rowData.rowCount ? rowData.rowCount : 0;
+
       params.successCallback(rowsThisPage, lastRow);
     },
   };

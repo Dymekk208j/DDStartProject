@@ -17,8 +17,8 @@ import { RemoveUserRequest } from 'src/app/admin-panel/shared/dto/requests/remov
   styleUrls: ['./remove-user-dialog.component.scss'],
 })
 export class RemoveUserDialogComponent implements OnInit {
-  public removeUserResult$: Observable<boolean>;
-  public reasonText: string;
+  public removeUserResult$: Observable<boolean | null>;
+  public reasonText: string = '';
 
   constructor(
     private store: Store<State>,

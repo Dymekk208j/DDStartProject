@@ -11,7 +11,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./admin-panel-header.component.scss'],
 })
 export class AdminPanelHeaderComponent implements OnInit, OnDestroy {
-  private crumbSubscription: Subscription;
+  private crumbSubscription!: Subscription;
 
   crumb$: Observable<Breadcrumb[]>;
 

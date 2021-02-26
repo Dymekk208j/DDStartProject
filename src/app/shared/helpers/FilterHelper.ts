@@ -1,6 +1,6 @@
 export class FilterHelper {
   static dateFilterParams = {
-    comparator: function (filterLocalDateAtMidnight, cellValue) {
+    comparator: function (filterLocalDateAtMidnight: Date, cellValue: string) {
       var dateAsString = cellValue;
       if (dateAsString == null) return -1;
       var dateParts = dateAsString.split('/');

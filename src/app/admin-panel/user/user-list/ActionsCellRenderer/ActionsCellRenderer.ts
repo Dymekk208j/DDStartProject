@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './ActionsCellRenderer.html',
 })
 export class ActionsCellRenderer implements ICellRendererAngularComp {
-  public params: IActionsCellRendererParams;
+  public params!: IActionsCellRendererParams;
 
   constructor(private translate: TranslateService) {}
 
