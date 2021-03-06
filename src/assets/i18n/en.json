@@ -60,6 +60,12 @@
       "or-select-from-list": "or select from list",
       "saved-reasons": "Saved reasons",
       "reason": "Reason"
+    },
+    "remove-user-dialog": {
+      "remove-user": "Remove user",
+      "reason": "Reason",
+      "reason-text-field-required": "Reason text is required",
+      "enter-a-reason-for-the-remove": "Enter a reason for the remove user"
     }
   },
   "account-settings": "Account settings",
@@ -76,6 +82,7 @@
   },
   "actions": {
     "cancel": "Cancel",
-    "block": "Block"
+    "block": "Block",
+    "remove": "Remove"
   }
 }

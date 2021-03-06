@@ -59,6 +59,12 @@
       "or-select-from-list": "lub wybierz z listy",
       "saved-reasons": "Zapisane powody",
       "reason": "Powód"
+    },
+    "remove-user-dialog": {
+      "reason": "Powód",
+      "reason-text-field-required": "Wartość w polu powód jest wymagana",
+      "remove-user": "Usuń użytkownika",
+      "enter-a-reason-for-the-remove": "Wprowadź powód usunięcia użytkownika"
     }
   },
   "users-management": "Zarządzanie użytkownikami",
@@ -76,6 +82,7 @@
   },
   "actions": {
     "cancel": "Anuluj",
-    "block": "Zablokuj"
+    "block": "Zablokuj",
+    "remove": "Usuń"
   }
 }

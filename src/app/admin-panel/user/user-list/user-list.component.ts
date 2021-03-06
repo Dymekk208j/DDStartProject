@@ -134,7 +134,6 @@ export class UserListComponent implements OnInit {
           onBlockClick: (user: User) => {
             const dialogRef = this.dialog.open(BlockUserDialogComponent, {
               width: '500px',
-              height: '350px',
               data: user,
             });
             dialogRef.afterClosed().subscribe((result) => {
@@ -149,7 +148,6 @@ export class UserListComponent implements OnInit {
           onRemoveClick: (user: User) => {
             const dialogRef = this.dialog.open(RemoveUserDialogComponent, {
               width: '500px',
-              height: '250px',
               data: user,
             });
             dialogRef.afterClosed().subscribe((result) => {
