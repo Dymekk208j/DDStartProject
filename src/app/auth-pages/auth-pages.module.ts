@@ -17,7 +17,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { PpBreadcrumbsModule } from 'pp-breadcrumbs';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
 
 // NgRx
 import { StoreModule } from '@ngrx/store';
@@ -30,7 +31,9 @@ import { StoreModule } from '@ngrx/store';
     ResetComponent,
   ],
   imports: [
+    MatRadioModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCheckboxModule,
     MatCardModule,
     AuthPagesRoutingModule,

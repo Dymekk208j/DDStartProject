@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { State } from '../state/auth.state';
-import { Subscription } from 'rxjs/internal/Subscription';
 import { filter, take } from 'rxjs/operators';
 
 import * as AuthActions from './../state/auth.actions';

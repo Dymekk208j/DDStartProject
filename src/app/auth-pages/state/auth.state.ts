@@ -10,4 +10,7 @@ export interface IAuthState {
   isUserLogged: boolean;
   loginErrors: string;
   loginUserResult: boolean | null;
+
+  registerUserResult: boolean | null;
+  registerUserErrors: string;
 }

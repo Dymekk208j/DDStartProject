@@ -17,3 +17,8 @@ export const getLoginUserResult = createSelector(
   getAuthFeatureState,
   (sliceState) => sliceState.loginUserResult
 );
+
+export const getRegisterUserResult = createSelector(
+  getAuthFeatureState,
+  (sliceState) => sliceState.registerUserResult
+);

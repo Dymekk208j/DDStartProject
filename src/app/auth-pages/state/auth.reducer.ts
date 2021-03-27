@@ -47,5 +47,33 @@ export const authReducer = createReducer<IAuthState>(
         loginErrors: '',
       };
     }
+  ),
+  on(
+    AuthActions.registerUser,
+    (state, params): IAuthState => {
+      return {
+        ...state,
+        registerUserResult: null,
+      };
+    }
+  ),
+  on(
+    AuthActions.registerUserSuccess,
+    (state, params): IAuthState => {
+      return {
+        ...state,
+        registerUserResult: true,
+      };
+    }
+  ),
+  on(
+    AuthActions.registerUserError,
+    (state, params): IAuthState => {
+      return {
+        ...state,
+        registerUserErrors: params.errors,
+        registerUserResult: false,
+      };
+    }
   )
 );

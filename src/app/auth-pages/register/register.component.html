@@ -1,25 +1,230 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <input type="text" name="login" id="login" />
-    </div>
-  </div>
+<div class="row h-100 p-0 m-0">
+  <div class="offset-4 col-4 align-self-center">
+    <div class="main-wrapper">
+      <mat-card class="box">
+        <mat-card-header>
+          <mat-card-title>
+            {{ "registration-page.title" | translate }}</mat-card-title
+          >
+        </mat-card-header>
+        <form [formGroup]="form" (ngSubmit)="signIn(form)">
+          <div class="form-content">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-field">
+                  <mat-form-field class="w-100">
+                    <input
+                      matInput
+                      formControlName="userName"
+                      placeholder="{{
+                        'registration-page.username' | translate
+                      }}"
+                    />
+                    <mat-error
+                      *ngIf="form.get('userName')?.hasError('required')"
+                    >
+                      {{
+                        "registration-page.username-is-mandatory" | translate
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="form.get('userName')?.hasError('minLength')"
+                    >
+                      {{
+                        "registration-page.username-is-too-short" | translate
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="form.get('userName')?.hasError('maxLength')"
+                    >
+                      {{ "registration-page.username-is-too-long" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
 
-  <div class="row">
-    <div class="col">
-      <input type="password" name="password" id="password" />
-    </div>
-  </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-field">
+                  <mat-form-field class="w-100">
+                    <input
+                      matInput
+                      formControlName="email"
+                      placeholder="Email"
+                    />
+                    <mat-error *ngIf="form.get('email')?.hasError('required')">
+                      {{ "registration-page.e-mail-is-mandatory" | translate }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        form.get('email')?.hasError('email') ||
+                        form.get('email')?.hasError('minLength') ||
+                        form.get('email')?.hasError('maxLength')
+                      "
+                    >
+                      {{ "registration-page.incorrect-e-mail" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-field">
+                  <mat-form-field class="w-100">
+                    <input
+                      matInput
+                      formControlName="confirmEmail"
+                      placeholder="{{
+                        'registration-page.confirm-email' | translate
+                      }}"
+                    />
+                    <mat-error
+                      *ngIf="form.get('confirmEmail')?.hasError('mustMatch')"
+                    >
+                      {{
+                        "registration-page.e-mails-are-different-they-should-be-equal"
+                          | translate
+                      }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
 
-  <div class="row">
-    <div class="col">
-      <input type="password" name="confirmPassword" id="confirmPassword" />
-    </div>
-  </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-field">
+                  <mat-form-field class="w-100">
+                    <input
+                      matInput
+                      formControlName="password"
+                      placeholder="{{
+                        'registration-page.password' | translate
+                      }}"
+                      type="password"
+                    />
+                    <mat-hint class="ac-form-field-description">{{
+                      "registration-page.between-6-and-255-characters"
+                        | translate
+                    }}</mat-hint>
+                    <mat-error
+                      *ngIf="form.get('password')?.hasError('required')"
+                    >
+                      {{
+                        "registration-page.password-is-mandatory" | translate
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="form.get('password')?.hasError('minlength')"
+                    >
+                      {{
+                        "registration-page.password-with-less-than-6-characters"
+                          | translate
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="form.get('password')?.hasError('maxlength')"
+                    >
+                      {{
+                        "registration-page.password-with-more-than-255-characters"
+                          | translate
+                      }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-field">
+                  <mat-form-field class="w-100">
+                    <input
+                      matInput
+                      formControlName="confirmPassword"
+                      placeholder="{{
+                        'registration-page.confirm-the-password' | translate
+                      }}"
+                      type="password"
+                    />
+                    <mat-error
+                      *ngIf="form.get('confirmPassword')?.hasError('mustMatch')"
+                      >{{
+                        "registration-page.passwords-are-different-they-should-be-equal"
+                          | translate
+                      }}</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
 
-  <div class="row">
-    <div class="col">
-      <button type="button" class="btn btn-primary">Rejestruj</button>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-field">
+                  <mat-form-field class="w-100">
+                    <input
+                      matInput
+                      formControlName="firstName"
+                      placeholder="{{
+                        'registration-page.firstname' | translate
+                      }}"
+                    />
+                    <mat-hint class="ac-form-field-description">{{
+                      "registration-page.optional" | translate
+                    }}</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-field">
+                  <mat-form-field class="w-100">
+                    <input
+                      matInput
+                      formControlName="lastName"
+                      placeholder="{{
+                        'registration-page.lastname' | translate
+                      }}"
+                    />
+                    <mat-hint class="ac-form-field-description">{{
+                      "registration-page.optional" | translate
+                    }}</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-12">
+                <mat-radio-group formControlName="gender">
+                  <mat-radio-button color="primary" value="0" class="mr-3">{{
+                    "registration-page.man" | translate
+                  }}</mat-radio-button>
+                  <mat-radio-button color="primary" value="1" class="mr-3">{{
+                    "registration-page.woman" | translate
+                  }}</mat-radio-button>
+                  <mat-radio-button color="primary" value="2" class="mr-3">{{
+                    "registration-page.other" | translate
+                  }}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+
+            <div class="form-field my-3">
+              <mat-checkbox
+                color="primary"
+                name="acceptTerms"
+                formControlName="acceptTerms"
+                >{{
+                  "registration-page.i-accept-terms-and-conditions" | translate
+                }}</mat-checkbox
+              >
+            </div>
+          </div>
+          <div class="form-bottom text-right">
+            <button mat-raised-button [disabled]="!form.valid">
+              {{ "registration-page.create-account" | translate }}
+            </button>
+          </div>
+        </form>
+      </mat-card>
     </div>
   </div>
 </div>

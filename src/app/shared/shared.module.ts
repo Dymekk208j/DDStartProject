@@ -1,3 +1,4 @@
+import { MustMatchDirective } from './Validators/must-match.directive';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -13,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [CustomPaginationComponent],
+  declarations: [CustomPaginationComponent, MustMatchDirective],
   imports: [
     HttpClientModule,
     MatButtonModule,
@@ -37,6 +38,7 @@ import { MatInputModule } from '@angular/material/input';
     CustomPaginationComponent,
     MatFormFieldModule,
     MatInputModule,
+    MustMatchDirective,
   ],
 })
 export class SharedModule {}

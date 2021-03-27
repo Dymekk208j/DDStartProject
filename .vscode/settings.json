@@ -8,6 +8,9 @@
         "ddsoftware",
         "dropdownlist",
         "dropdowns",
+        "firstname",
+        "lastname",
+        "minlength",
         "ngrx",
         "toastr"
     ],

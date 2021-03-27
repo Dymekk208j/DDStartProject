@@ -12,7 +12,7 @@ const routes: Routes = [
     data: { breadcrumbs: 'admin-panel' },
     children: [
       { path: 'Login', component: LoginComponent },
-      { path: 'Register', component: RegisterComponent },
+      { path: 'Registration', component: RegisterComponent },
       { path: 'Remind', component: ResetComponent },
     ],
   },

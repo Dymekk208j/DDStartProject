@@ -5,4 +5,6 @@ export const AuthInitialState: IAuthState = {
   loggedUser: null,
   loginErrors: '',
   loginUserResult: null,
+  registerUserResult: null,
+  registerUserErrors: '',
 };

@@ -94,6 +94,36 @@
     "title": "Strona logowania",
     "username-or-email": "Nazwa użytkownika albo e-mail",
     "user-logged": "Poprawnie zalogowano",
-    "user-login-has-occurred-problem": "Wystąpił problem z zalogowaniem użytkownika"
+    "user-login-has-occurred-problem": "Wystąpił problem z zalogowaniem użytkownika",
+    "username-field-required": "Pole nazwy użytkownika jest obowiązkowe",
+    "password-field-required": "Pole hasła jest wymagane"
+  },
+  "registration-page": {
+    "between-6-and-255-characters": "Od 6 do 255 znaków",
+    "confirm-email": "Potwierdź email",
+    "confirm-the-password": "Potwierdź hasło",
+    "create-account": "Utwórz konto",
+    "e-mail-is-mandatory": "E-mail jest obowiązkowy",
+    "e-mails-are-different-they-should-be-equal": "E-maile są różne. Powinny być takie same!",
+    "i-accept-terms-and-conditions": "Akceptuję regulamin",
+    "password": "Hasło",
+    "password-is-mandatory": "Hasło jest obowiązkowe",
+    "password-with-less-than-6-characters": "Hasło zawiera mniej niż 6 znaków",
+    "password-with-more-than-255-characters": "Hasło składa się z więcej niż 255 znaków",
+    "passwords-are-different-they-should-be-equal": "Hasła są różne. Powinny być takie same!",
+    "title": "Utwórz nowe Konto",
+    "username": "Nazwa Użytkownika",
+    "username-is-mandatory": "Nazwa użytkownika jest obowiązkowa",
+    "username-is-too-long": "Nazwa użytkownika jest za długa",
+    "username-is-too-short": "Nazwa użytkownika jest za krótka",
+    "incorrect-e-mail": "Nieprawidłowy email",
+    "optional": "(Opcjonalne)",
+    "firstname": "Imię",
+    "lastname": "Nazwisko",
+    "man": "Mężczyzna",
+    "woman": "Kobieta",
+    "other": "Inne",
+    "user-created": "Utworzono użytkownika",
+    "user-registration-has-occurred-problem": "Podczas rejestracji użytkownika wystąpił problem"
   }
 }

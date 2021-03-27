@@ -5,8 +5,9 @@
 }
 
 .main {
-  height: calc(100% - 45px);
   display: flex;
+  flex-flow: column;
+  height: calc(100vh - 53px);
 }
 
 .footer {

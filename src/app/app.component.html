@@ -3,20 +3,17 @@
     <div class="col-1 logo p-1">
       <img src="../../assets/logo.png" class="img-fluid p-0" routerLink="/" />
     </div>
-    <div class="col text-right">
-      <button
-        mat-raised-button
-        routerLink="/Auth/Login"
-        *ngIf="!(userLogged$ | async)"
-      >
-        Strona logowania
-      </button>
-      <button
-        mat-raised-button
-        routerLink="/Auth/Registration"
-        *ngIf="userLogged$ | async"
-      >
-        Strona rejestracji
+    <div class="col text-right py-2">
+      <div *ngIf="!(userLogged$ | async)">
+        <button mat-raised-button routerLink="/Auth/Login">
+          Strona logowania
+        </button>
+        <button mat-raised-button routerLink="/Auth/Registration">
+          Strona rejestracji
+        </button>
+      </div>
+      <button mat-raised-button *ngIf="userLogged$ | async">
+        <mat-icon>menu</mat-icon>
       </button>
     </div>
   </div>
