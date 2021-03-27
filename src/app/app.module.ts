@@ -1,6 +1,5 @@
 import { MatPaginatorI18nService } from './shared/MatPaginatorI18n.Service';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AdminPanelModule } from './admin-panel/admin-panel.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ErrorsPagesModule } from './errors-pages/errors-pages.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,8 +18,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-
 import { ToastrModule } from 'ngx-toastr';
+import { authReducer } from './auth-pages/state/auth.reducer';
+import { AuthEffects } from './auth-pages/state/auth.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -50,6 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     ToastrModule.forRoot(),
+    StoreModule.forFeature('authState', authReducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   providers: [
     {

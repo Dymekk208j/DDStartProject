@@ -84,5 +84,16 @@
     "cancel": "Anuluj",
     "block": "Zablokuj",
     "remove": "Usuń"
+  },
+  "login-page": {
+    "Sign-in": "Zaloguj",
+    "go-to-registration-page": "Przejdź do rejestracji nowego konta",
+    "password": "Hasło",
+    "problem-with-login-remind-password": "Problem z zalogowaniem się? Przypomnij hasło.",
+    "remember-me": "Zapamiętaj mnie",
+    "title": "Strona logowania",
+    "username-or-email": "Nazwa użytkownika albo e-mail",
+    "user-logged": "Poprawnie zalogowano",
+    "user-login-has-occurred-problem": "Wystąpił problem z zalogowaniem użytkownika"
   }
 }

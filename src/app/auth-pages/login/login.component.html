@@ -1,0 +1,70 @@
+<div class="row h-100 p-0 m-0">
+  <div class="offset-4 col-4 align-self-center">
+    <div class="main-wrapper">
+      <mat-card class="box">
+        <mat-card-header>
+          <mat-card-title> {{ "login-page.title" | translate }}</mat-card-title>
+        </mat-card-header>
+        <form #loginUserForm="ngForm">
+          <mat-card-content>
+            <mat-form-field class="w-100 my-2">
+              <input
+                name="username"
+                type="text"
+                matInput
+                [placeholder]="'login-page.username-or-email' | translate"
+                [(ngModel)]="login"
+                required
+                #usernameTextField="ngModel"
+              />
+            </mat-form-field>
+            <div
+              [hidden]="usernameTextField.valid || usernameTextField.pristine"
+              class="alert alert-danger"
+            >
+              {{ "login-page.username-field-required" | translate }}
+            </div>
+
+            <mat-form-field class="w-100 my-2">
+              <input
+                name="password"
+                type="password"
+                matInput
+                [placeholder]="'login-page.password' | translate"
+                [(ngModel)]="password"
+                required
+                #passwordTextField="ngModel"
+              />
+            </mat-form-field>
+            <div
+              [hidden]="passwordTextField.valid || passwordTextField.pristine"
+              class="alert alert-danger"
+            >
+              {{ "login-page.password-field-required" | translate }}
+            </div>
+
+            <mat-checkbox color="primary">
+              {{ "login-page.remember-me" | translate }}
+            </mat-checkbox>
+          </mat-card-content>
+          <button
+            mat-stroked-button
+            color="success"
+            class="btn-block"
+            (click)="signIn()"
+            [disabled]="!loginUserForm.form.valid"
+          >
+            {{ "login-page.Sign-in" | translate }}
+          </button>
+
+          <button class="my-2 w-100" mat-button routerLink="/Remind">
+            {{ "login-page.problem-with-login-remind-password" | translate }}
+          </button>
+          <button class="mb-2 w-100" mat-button routerLink="/Register">
+            {{ "login-page.go-to-registration-page" | translate }}
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

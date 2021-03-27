@@ -84,5 +84,18 @@
     "cancel": "Cancel",
     "block": "Block",
     "remove": "Remove"
+  },
+  "login-page": {
+    "title": "Login page",
+    "username-or-email": "Username or e-mail",
+    "go-to-registration-page": "Go to registration page",
+    "password": "Password",
+    "remember-me": "Remember me",
+    "Sign-in": "Sign-in",
+    "problem-with-login-remind-password": "Problem with logging in? Remind Password",
+    "username-field-required": "Username field is required",
+    "password-field-required": "Password field is required",
+    "user-logged": "Successfully logged in",
+    "user-login-has-occurred-problem": "User logging has occurred problem"
   }
 }

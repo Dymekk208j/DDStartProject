@@ -1,4 +1,26 @@
 <div class="container-fluid h-100">
+  <div class="row header" *ngIf="administratorRole && !isAdminPanel">
+    <div class="col-1 logo p-1">
+      <img src="../../assets/logo.png" class="img-fluid p-0" routerLink="/" />
+    </div>
+    <div class="col text-right">
+      <button
+        mat-raised-button
+        routerLink="/Auth/Login"
+        *ngIf="!(userLogged$ | async)"
+      >
+        Strona logowania
+      </button>
+      <button
+        mat-raised-button
+        routerLink="/Auth/Registration"
+        *ngIf="userLogged$ | async"
+      >
+        Strona rejestracji
+      </button>
+    </div>
+  </div>
+
   <div class="row main">
     <div class="col-12">
       <router-outlet></router-outlet>
@@ -8,7 +30,7 @@
         color="primary"
         routerLink="/Admin"
         class="admin-navigation-button"
-        *ngIf="administratorRole && !isAdminPanel"
+        *ngIf="(userLogged$ | async) && administratorRole && !isAdminPanel"
       >
         <mat-icon>admin_panel_settings</mat-icon>
       </button>
@@ -18,7 +40,7 @@
         color="primary"
         routerLink="/"
         class="admin-navigation-button"
-        *ngIf="administratorRole && isAdminPanel"
+        *ngIf="(userLogged$ | async) && administratorRole && isAdminPanel"
       >
         <mat-icon>home</mat-icon>
       </button>
