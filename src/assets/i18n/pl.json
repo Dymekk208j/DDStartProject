@@ -124,6 +124,7 @@
     "woman": "Kobieta",
     "other": "Inne",
     "user-created": "Utworzono użytkownika",
-    "user-registration-has-occurred-problem": "Podczas rejestracji użytkownika wystąpił problem"
+    "user-registration-has-occurred-problem": "Podczas rejestracji użytkownika wystąpił problem",
+    "password-rules-has-errors": "Hasło musi się składać z co najmniej jednej cyfry, zawierać małe i duże litery oraz znaki specjalne (np. # ,? ,!)"
   }
 }

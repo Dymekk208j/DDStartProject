@@ -124,6 +124,7 @@
     "woman": "Woman",
     "other": "Other",
     "user-created": "User created",
-    "user-registration-has-occurred-problem": "User registration has occurred problem"
+    "user-registration-has-occurred-problem": "User registration has occurred problem",
+    "password-rules-has-errors": "The password must consist of at least one number, contain lowercase and uppercase letters and special characters (e.g. #,?,!)"
   }
 }

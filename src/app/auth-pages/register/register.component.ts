@@ -24,6 +24,7 @@ import {
 import { Observable } from 'rxjs';
 import { MustMatch } from 'src/app/shared/Validators/must-match.validator';
 import { LoginRequest } from '../dto/requests/loginRequest';
+import { PasswordRules } from 'src/app/shared/Validators/password-rules.validator';
 
 @Component({
   selector: 'dds-register',
@@ -69,7 +70,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           Validators.maxLength(255),
         ]),
 
-        password: new FormControl('', Validators.required),
+        password: new FormControl('', [Validators.required, PasswordRules()]),
         confirmPassword: new FormControl('', Validators.required),
 
         acceptTerms: new FormControl('', [Validators.requiredTrue]),
