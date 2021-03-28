@@ -1,6 +1,7 @@
+import { Subscription } from 'rxjs/internal/Subscription';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginRequest } from './../dto/requests/loginRequest';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { State } from '../state/auth.state';
@@ -21,7 +22,9 @@ import { Observable } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  private resultSubscription: Subscription;
+
   public login: string;
   public password: string;
   public rememberMe: boolean;
@@ -47,13 +50,15 @@ export class LoginComponent implements OnInit {
 
     this.userLogged$ = this.store.select(getIsUserLoggedInformation);
   }
+  ngOnDestroy(): void {
+    this.resultSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.store.dispatch(AuthActions.resetStatuses());
 
-    this.getLoginUserResult$
+    this.resultSubscription = this.getLoginUserResult$
       .pipe(filter((t) => t !== null))
-      .pipe(take(1))
       .subscribe((result) => {
         if (result) {
           this.toastr.success(this.translate.instant('login-page.user-logged'));

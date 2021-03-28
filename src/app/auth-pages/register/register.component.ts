@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs/internal/Subscription';
 import { RegisterRequest } from './../dto/requests/registerRequest';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -22,13 +23,17 @@ import {
 } from './../state/auth.selectors';
 import { Observable } from 'rxjs';
 import { MustMatch } from 'src/app/shared/Validators/must-match.validator';
+import { LoginRequest } from '../dto/requests/loginRequest';
 
 @Component({
   selector: 'dds-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
+  private loginResultSubscription: Subscription;
+  private registrationResultSubscription: Subscription;
+
   public form: FormGroup;
 
   public model: RegisterRequest;
@@ -94,18 +99,22 @@ export class RegisterComponent implements OnInit {
 
     this.userLogged$ = this.store.select(getIsUserLoggedInformation);
   }
+  ngOnDestroy(): void {
+    this.loginResultSubscription.unsubscribe();
+    this.registrationResultSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.store.dispatch(AuthActions.resetStatuses());
 
-    this.getRegisterUserResult$
+    this.registrationResultSubscription = this.getRegisterUserResult$
       .pipe(filter((t) => t !== null))
-      .pipe(take(1))
       .subscribe((result) => {
         if (result) {
           this.toastr.success(
             this.translate.instant('registration-page.user-created')
           );
+          this.logIn();
         } else
           this.toastr.error(
             this.translate.instant(
@@ -114,9 +123,8 @@ export class RegisterComponent implements OnInit {
           );
       });
 
-    this.getLoginUserResult$
+    this.loginResultSubscription = this.getLoginUserResult$
       .pipe(filter((t) => t !== null))
-      .pipe(take(1))
       .subscribe((result) => {
         if (result) {
           this.toastr.success(this.translate.instant('login-page.user-logged'));
@@ -145,5 +153,15 @@ export class RegisterComponent implements OnInit {
     };
 
     this.store.dispatch(AuthActions.registerUser({ request: request }));
+  }
+
+  logIn() {
+    let request: LoginRequest = {
+      Login: this.form.get('userName')?.value,
+      Password: this.form.get('password')?.value,
+      RememberMe: false,
+    };
+
+    this.store.dispatch(AuthActions.loginUser({ request: request }));
   }
 }

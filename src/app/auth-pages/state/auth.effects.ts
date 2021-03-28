@@ -31,16 +31,9 @@ export class AuthEffects {
       ofType(AuthActions.registerUser),
       mergeMap((params) =>
         this.authService.registerUser(params.request).pipe(
-          map((response) => {
-            let loginRequest: LoginRequest = {
-              Login: params.request.UserName,
-              Password: params.request.Password,
-              RememberMe: false,
-            };
-            AuthActions.loginUser({ request: loginRequest });
-
-            return AuthActions.registerUserSuccess({ response: response });
-          }),
+          map((response) =>
+            AuthActions.registerUserSuccess({ response: response })
+          ),
           catchError((error) =>
             of(AuthActions.registerUserError({ errors: error }))
           )
