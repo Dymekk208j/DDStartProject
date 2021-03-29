@@ -128,5 +128,8 @@
     "password-rules-has-errors": "The password must consist of at least one number, contain lowercase and uppercase letters and special characters (e.g. #,?,!)",
     "email-is-taken": "E-mail is taken",
     "username-is-taken": "Username is taken"
+  },
+  "context-menu": {
+    "logout": "LogOut"
   }
 }

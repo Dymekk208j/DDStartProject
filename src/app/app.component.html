@@ -12,33 +12,30 @@
           Strona rejestracji
         </button>
       </div>
-      <button mat-raised-button *ngIf="userLogged$ | async">
+      <button mat-raised-button *ngIf="userLogged$ | async" [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <h3 class="p-2 text-white bg-dark" *ngIf="user$ | async; let user">{{ user?.Login }}</h3>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+          <span>{{ "context-menu.logout" | translate }}</span>
+        </button>
+      </mat-menu>
     </div>
   </div>
 
   <div class="row main">
     <div class="col-12">
       <router-outlet></router-outlet>
-      <button
-        id="adminPanelBtn"
-        mat-mini-fab
-        color="primary"
-        routerLink="/Admin"
-        class="admin-navigation-button"
-        *ngIf="(userLogged$ | async) && administratorRole && !isAdminPanel"
-      >
+      <button id="adminPanelBtn" mat-mini-fab color="primary" routerLink="/Admin" class="admin-navigation-button" *ngIf="(userLogged$ | async) && administratorRole && !isAdminPanel">
         <mat-icon>admin_panel_settings</mat-icon>
       </button>
-      <button
-        id="homePageBtn"
-        mat-mini-fab
-        color="primary"
-        routerLink="/"
-        class="admin-navigation-button"
-        *ngIf="(userLogged$ | async) && administratorRole && isAdminPanel"
-      >
+      <button id="homePageBtn" mat-mini-fab color="primary" routerLink="/" class="admin-navigation-button" *ngIf="(userLogged$ | async) && administratorRole && isAdminPanel">
         <mat-icon>home</mat-icon>
       </button>
     </div>
@@ -48,14 +45,8 @@
     <div class="row footer-row">
       <div class="col-12 ml-2">
         <mat-form-field>
-          <mat-select
-            [(value)]="selectedLang"
-            (valueChange)="translateService.use($event)"
-          >
-            <mat-option
-              *ngFor="let lang of translateService.getLangs()"
-              [value]="lang"
-            >
+          <mat-select [(value)]="selectedLang" (valueChange)="translateService.use($event)">
+            <mat-option *ngFor="let lang of translateService.getLangs()" [value]="lang">
               {{ "languages." + lang | translate }}
             </mat-option>
           </mat-select>

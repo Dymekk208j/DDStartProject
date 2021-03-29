@@ -1,7 +1,8 @@
-import { BaseResponse } from '../../../shared/dto/responses/BaseResponse';
+import { BaseResponse } from "../../../shared/dto/responses/BaseResponse";
 
 export class LoginResponse extends BaseResponse {
-  public Id: string;
-  public Login: string;
-  public Token: string;
+  public id: string;
+  public login: string;
+  public token: string;
+  public rememberMe: boolean;
 }

@@ -22,6 +22,7 @@ import { MatPaginatorIntl } from "@angular/material/paginator";
 import { ToastrModule } from "ngx-toastr";
 import { authReducer } from "./auth-pages/state/auth.reducer";
 import { AuthEffects } from "./auth-pages/state/auth.effects";
+import { MatMenuModule } from "@angular/material/menu";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent, LandingPageComponent],
   imports: [
+    MatMenuModule,
     MatSelectModule,
     BrowserAnimationsModule,
     BrowserModule,

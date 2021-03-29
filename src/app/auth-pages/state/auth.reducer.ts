@@ -1,8 +1,8 @@
-import { User } from '../models/user';
-import { AuthInitialState } from './auth.initialState';
-import { createReducer, on } from '@ngrx/store';
-import * as AuthActions from './auth.actions';
-import { IAuthState } from './auth.state';
+import { User } from "../models/user";
+import { AuthInitialState } from "./auth.initialState";
+import { createReducer, on } from "@ngrx/store";
+import * as AuthActions from "./auth.actions";
+import { IAuthState } from "./auth.state";
 
 export const authReducer = createReducer<IAuthState>(
   AuthInitialState,
@@ -12,18 +12,24 @@ export const authReducer = createReducer<IAuthState>(
       return {
         ...state,
         loginUserResult: null,
-        isUserLogged: false,
+        isUserLogged: false
       };
     }
   ),
   on(
     AuthActions.loginUserSuccess,
     (state, params): IAuthState => {
+      let _loggedUser: User = {
+        Id: params.response.id,
+        Login: params.response.login,
+        Token: params.response.token
+      };
+
       return {
         ...state,
-        loggedUser: params.response,
+        loggedUser: _loggedUser,
         loginUserResult: true,
-        isUserLogged: true,
+        isUserLogged: true
       };
     }
   ),
@@ -34,7 +40,7 @@ export const authReducer = createReducer<IAuthState>(
         ...state,
         loginErrors: params.errors,
         loginUserResult: false,
-        isUserLogged: false,
+        isUserLogged: false
       };
     }
   ),
@@ -44,7 +50,7 @@ export const authReducer = createReducer<IAuthState>(
       return {
         ...state,
         loginUserResult: null,
-        loginErrors: '',
+        loginErrors: ""
       };
     }
   ),
@@ -53,7 +59,7 @@ export const authReducer = createReducer<IAuthState>(
     (state, params): IAuthState => {
       return {
         ...state,
-        registerUserResult: null,
+        registerUserResult: null
       };
     }
   ),
@@ -62,7 +68,7 @@ export const authReducer = createReducer<IAuthState>(
     (state, params): IAuthState => {
       return {
         ...state,
-        registerUserResult: true,
+        registerUserResult: true
       };
     }
   ),
@@ -72,7 +78,46 @@ export const authReducer = createReducer<IAuthState>(
       return {
         ...state,
         registerUserErrors: params.errors,
-        registerUserResult: false,
+        registerUserResult: false
+      };
+    }
+  ),
+
+  on(
+    AuthActions.restoreUser,
+    (state, params): IAuthState => {
+      return {
+        ...state,
+        loggedUser: null,
+        isUserLogged: false
+      };
+    }
+  ),
+  on(
+    AuthActions.restoreUserSuccess,
+    (state, params): IAuthState => {
+      return {
+        ...state,
+        loggedUser: params.user,
+        isUserLogged: true
+      };
+    }
+  ),
+  on(
+    AuthActions.logOutUser,
+    (state, params): IAuthState => {
+      return {
+        ...state
+      };
+    }
+  ),
+  on(
+    AuthActions.logOutUserSuccess,
+    (state, params): IAuthState => {
+      return {
+        ...state,
+        loggedUser: null,
+        isUserLogged: false
       };
     }
   )

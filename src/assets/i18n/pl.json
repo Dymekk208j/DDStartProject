@@ -128,5 +128,8 @@
     "password-rules-has-errors": "Hasło musi się składać z co najmniej jednej cyfry, zawierać małe i duże litery oraz znaki specjalne (np. # ,? ,!)",
     "email-is-taken": "E-mail jest zajęty",
     "username-is-taken": "Nazwa użytkownika jest zajęta"
+  },
+  "context-menu": {
+    "logout": "Wyloguj"
   }
 }
