@@ -1,35 +1,26 @@
-import { Subscription } from 'rxjs/internal/Subscription';
-import { RegisterRequest } from './../dto/requests/registerRequest';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { State } from '../state/auth.state';
-import { filter, take } from 'rxjs/operators';
+import { AuthService } from "./../services/auth.service";
+import { Router } from "@angular/router";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
+import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 
-import * as AuthActions from './../state/auth.actions';
-import { ToastrService } from 'ngx-toastr';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { Observable } from "rxjs";
+import { Subscription } from "rxjs/internal/Subscription";
+import { filter, take } from "rxjs/operators";
 
-import {
-  getIsUserLoggedInformation,
-  getLoginUserResult,
-  getRegisterUserResult,
-} from './../state/auth.selectors';
-import { Observable } from 'rxjs';
-import { MustMatch } from 'src/app/shared/Validators/must-match.validator';
-import { LoginRequest } from '../dto/requests/loginRequest';
-import { PasswordRules } from 'src/app/shared/Validators/password-rules.validator';
+import { State } from "../state/auth.state";
+import { Store } from "@ngrx/store";
+import { TranslateService } from "@ngx-translate/core";
+import * as AuthActions from "./../state/auth.actions";
+import { getIsUserLoggedInformation, getLoginUserResult, getRegisterUserResult } from "./../state/auth.selectors";
+
+import { LoginRequest, RegisterRequest } from "../dto/requests";
+import { UniqueUsername, PasswordRules, MustMatch, UniqueEmail } from "src/app/shared/Validators";
 
 @Component({
-  selector: 'dds-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: "dds-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"]
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   private loginResultSubscription: Subscription;
@@ -49,42 +40,27 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private router: Router,
     private toastr: ToastrService,
     private translate: TranslateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     this.form = this.formBuilder.group(
       {
-        userName: new FormControl('', [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(255),
-        ]),
-        email: new FormControl('', [
-          Validators.email,
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(255),
-        ]),
-        confirmEmail: new FormControl('', [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(255),
-        ]),
+        userName: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(255)], [UniqueUsername(this.authService)]),
+        email: new FormControl("", [Validators.email, Validators.required, Validators.minLength(3), Validators.maxLength(255)], [UniqueEmail(this.authService)]),
+        confirmEmail: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
 
-        password: new FormControl('', [Validators.required, PasswordRules()]),
-        confirmPassword: new FormControl('', Validators.required),
+        password: new FormControl("", [Validators.required, PasswordRules()]),
+        confirmPassword: new FormControl("", Validators.required),
 
-        acceptTerms: new FormControl('', [Validators.requiredTrue]),
+        acceptTerms: new FormControl("", [Validators.requiredTrue]),
 
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
+        firstName: new FormControl(""),
+        lastName: new FormControl(""),
 
-        gender: new FormControl('0', Validators.required),
+        gender: new FormControl("0", Validators.required)
       },
       {
-        validator: [
-          MustMatch('password', 'confirmPassword'),
-          MustMatch('email', 'confirmEmail'),
-        ],
+        validator: [MustMatch("password", "confirmPassword"), MustMatch("email", "confirmEmail")]
       }
     );
 
@@ -108,49 +84,35 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(AuthActions.resetStatuses());
 
-    this.registrationResultSubscription = this.getRegisterUserResult$
-      .pipe(filter((t) => t !== null))
-      .subscribe((result) => {
-        if (result) {
-          this.toastr.success(
-            this.translate.instant('registration-page.user-created')
-          );
-          this.logIn();
-        } else
-          this.toastr.error(
-            this.translate.instant(
-              'registration-page.user-registration-has-occurred-problem'
-            )
-          );
-      });
+    this.registrationResultSubscription = this.getRegisterUserResult$.pipe(filter((t) => t !== null)).subscribe((result) => {
+      if (result) {
+        this.toastr.success(this.translate.instant("registration-page.user-created"));
+        this.logIn();
+      } else this.toastr.error(this.translate.instant("registration-page.user-registration-has-occurred-problem"));
+    });
 
-    this.loginResultSubscription = this.getLoginUserResult$
-      .pipe(filter((t) => t !== null))
-      .subscribe((result) => {
-        if (result) {
-          this.toastr.success(this.translate.instant('login-page.user-logged'));
-          this.router.navigateByUrl(`/`);
-        } else
-          this.toastr.error(
-            this.translate.instant('login-page.user-login-has-occurred-problem')
-          );
-      });
+    this.loginResultSubscription = this.getLoginUserResult$.pipe(filter((t) => t !== null)).subscribe((result) => {
+      if (result) {
+        this.toastr.success(this.translate.instant("login-page.user-logged"));
+        this.router.navigateByUrl(`/`);
+      } else this.toastr.error(this.translate.instant("login-page.user-login-has-occurred-problem"));
+    });
   }
 
   signIn(formData: FormGroup): void {
     var request: RegisterRequest = {
-      UserName: formData.get('userName')?.value,
+      UserName: formData.get("userName")?.value,
 
-      Email: formData.get('email')?.value,
-      EmailConfirm: formData.get('confirmEmail')?.value,
+      Email: formData.get("email")?.value,
+      EmailConfirm: formData.get("confirmEmail")?.value,
 
-      Password: formData.get('password')?.value,
-      PasswordConfirm: formData.get('confirmPassword')?.value,
+      Password: formData.get("password")?.value,
+      PasswordConfirm: formData.get("confirmPassword")?.value,
 
-      FirstName: formData.get('firstName')?.value,
-      LastName: formData.get('lastName')?.value,
+      FirstName: formData.get("firstName")?.value,
+      LastName: formData.get("lastName")?.value,
 
-      Gender: +formData.get('gender')?.value,
+      Gender: +formData.get("gender")?.value
     };
 
     this.store.dispatch(AuthActions.registerUser({ request: request }));
@@ -158,9 +120,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   logIn() {
     let request: LoginRequest = {
-      Login: this.form.get('userName')?.value,
-      Password: this.form.get('password')?.value,
-      RememberMe: false,
+      Login: this.form.get("userName")?.value,
+      Password: this.form.get("password")?.value,
+      RememberMe: false
     };
 
     this.store.dispatch(AuthActions.loginUser({ request: request }));

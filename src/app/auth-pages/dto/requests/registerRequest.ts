@@ -1,5 +1,5 @@
-import { Gender } from './../../../shared/enums/gender';
-import { BaseRequest } from '../../../shared/dto/requests/baseRequest';
+import { Gender } from "./../../../shared/enums";
+import { BaseRequest } from "../../../shared/dto/requests/baseRequest";
 
 export class RegisterRequest extends BaseRequest {
   public UserName: string;

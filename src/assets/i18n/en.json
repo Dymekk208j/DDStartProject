@@ -125,6 +125,8 @@
     "other": "Other",
     "user-created": "User created",
     "user-registration-has-occurred-problem": "User registration has occurred problem",
-    "password-rules-has-errors": "The password must consist of at least one number, contain lowercase and uppercase letters and special characters (e.g. #,?,!)"
+    "password-rules-has-errors": "The password must consist of at least one number, contain lowercase and uppercase letters and special characters (e.g. #,?,!)",
+    "email-is-taken": "E-mail is taken",
+    "username-is-taken": "Username is taken"
   }
 }
