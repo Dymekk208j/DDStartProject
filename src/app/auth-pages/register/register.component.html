@@ -111,9 +111,9 @@
             <div class="row mt-4">
               <div class="col-12">
                 <mat-radio-group formControlName="gender">
-                  <mat-radio-button color="primary" value="0" class="mr-3">{{ "registration-page.man" | translate }}</mat-radio-button>
-                  <mat-radio-button color="primary" value="1" class="mr-3">{{ "registration-page.woman" | translate }}</mat-radio-button>
-                  <mat-radio-button color="primary" value="2" class="mr-3">{{ "registration-page.other" | translate }}</mat-radio-button>
+                  <mat-radio-button color="primary" [value]="Gender.Man" class="mr-3">{{ "registration-page.man" | translate }}</mat-radio-button>
+                  <mat-radio-button color="primary" [value]="Gender.Woman" class="mr-3">{{ "registration-page.woman" | translate }}</mat-radio-button>
+                  <mat-radio-button color="primary" [value]="Gender.Other" class="mr-3">{{ "registration-page.other" | translate }}</mat-radio-button>
                 </mat-radio-group>
               </div>
             </div>

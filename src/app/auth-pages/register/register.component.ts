@@ -1,3 +1,4 @@
+import { Gender } from "./../../shared/enums/gender";
 import { AuthService } from "./../services/auth.service";
 import { Router } from "@angular/router";
 import { Component, OnInit, OnDestroy } from "@angular/core";
@@ -23,6 +24,8 @@ import { UniqueUsername, PasswordRules, MustMatch, UniqueEmail } from "src/app/s
   styleUrls: ["./register.component.scss"]
 })
 export class RegisterComponent implements OnInit, OnDestroy {
+  public Gender = Gender;
+
   private loginResultSubscription: Subscription;
   private registrationResultSubscription: Subscription;
 
@@ -57,7 +60,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         firstName: new FormControl(""),
         lastName: new FormControl(""),
 
-        gender: new FormControl("0", Validators.required)
+        gender: new FormControl(this.Gender.Man, Validators.required)
       },
       {
         validator: [MustMatch("password", "confirmPassword"), MustMatch("email", "confirmEmail")]
