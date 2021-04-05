@@ -2,13 +2,19 @@
   "landing-page-title": "DDSoftware Landing Page",
   "test-d": "test eng",
   "ddsoftware-starting-project": "DDSoftware Starting Project",
-  "admin-panel": "Admin Panel",
+  "admin-panel": {
+    "menu": {
+      "roles": "Roles",
+      "accounts": "Accounts",
+      "return-home": "Return home"
+    },
+    "admin-panel": "Administrator panel"
+  },
   "login": "Login",
   "register": "Register",
   "account-management": "Account management",
   "users-management": "Users management",
   "roles-management": "Roles management",
-  "roles": "Roles",
   "paginator": {
     "Items-per-page:": "Items per page:",
     "Next-page": "Next page",
@@ -69,7 +75,6 @@
     }
   },
   "account-settings": "Account settings",
-  "accounts": "Accounts",
   "logout": "Logout",
   "dashboard": "Dashboard",
   "languages": {

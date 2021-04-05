@@ -1,36 +1,18 @@
 <mat-accordion class="app-nav-accordion">
-  <mat-expansion-panel
-    class="mat-elevation-z0"
-    [disabled]="true"
-    #mep="matExpansionPanel"
-  >
+  <mat-expansion-panel class="mat-elevation-z0" [disabled]="true" #mep="matExpansionPanel">
     <mat-expansion-panel-header class="px-0">
-      <button
-        mat-raised-button
-        color="primary"
-        class="w-100 px-1"
-        (click)="mep.expanded = !mep.expanded"
-      >
-        <mat-icon class="menu-icon">{{ HeaderIcon }}</mat-icon>
-        {{ Header | translate }}
-        <span class="fill-space"></span>
-        <mat-icon class="Arrow">
-          {{ mep.expanded ? "expand_less" : "expand_more" }}</mat-icon
-        >
+      <button matTooltip="{{ Header | translate }}" mat-raised-button color="primary" class="w-100 px-1" (click)="mep.expanded = !mep.expanded">
+        <mat-icon class="menu-icon" [ngClass]="{ 'mx-0 px-0': OnlyIcons }">{{ HeaderIcon }}</mat-icon>
+        <span *ngIf="!OnlyIcons"> {{ Header | translate }}</span>
+        <span *ngIf="!OnlyIcons" class="fill-space"></span>
+        <mat-icon class="Arrow"> {{ mep.expanded ? "expand_less" : "expand_more" }}</mat-icon>
       </button>
     </mat-expansion-panel-header>
 
     <mat-nav-list>
-      <button
-        mat-stroked-button
-        color="basic"
-        [routerLink]="item.url"
-        class="w-100 text-left"
-        routerLinkActive="active"
-        *ngFor="let item of Items"
-      >
-        <mat-icon>{{ item.icon }}</mat-icon>
-        {{ item.name | translate }}
+      <button matTooltip="{{ item.name | translate }}" mat-stroked-button color="basic" [routerLink]="item.url" class="w-100 text-left" routerLinkActive="active" *ngFor="let item of Items">
+        <mat-icon class="mx-0 px-0">{{ item.icon }}</mat-icon>
+        <span *ngIf="!OnlyIcons"> {{ item.name | translate }}</span>
       </button>
     </mat-nav-list>
   </mat-expansion-panel>

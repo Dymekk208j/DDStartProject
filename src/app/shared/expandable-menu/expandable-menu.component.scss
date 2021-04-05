@@ -63,7 +63,48 @@
 }
 
 .mat-icon {
-  margin-right: 0.5em;
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 1200px) {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5em;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 1200px) {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    margin-right: 0.3em;
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1600px) {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5em;
+  }
+}
+
+button {
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 1200px) {
+    font-size: 100%;
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 1200px) {
+    font-size: 70%;
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1600px) {
+    font-size: 100%;
+  }
 }
 
 .mat-accordion .mat-expansion-panel:last-of-type {

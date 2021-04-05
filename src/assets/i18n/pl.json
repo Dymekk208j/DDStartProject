@@ -1,12 +1,18 @@
 {
   "landing-page-title": "DDSoftware Landing Page",
   "test-d": "test pl",
-  "admin-panel": "Administracja",
+  "admin-panel": {
+    "menu": {
+      "roles": "Role",
+      "accounts": "Użytkownicy",
+      "return-home": "Strona domowa"
+    },
+    "admin-panel": "Panel administratora"
+  },
   "ddsoftware-starting-project": "Projekt startowy DDSoftware",
   "login": "Logowanie",
   "register": "Rejestracja",
   "account-management": "Zarządzanie kontami",
-  "roles": "Role",
   "roles-management": "Zarządzanie rolami",
   "paginator": {
     "Items-per-page:": "Wierszy na stronę:",
@@ -70,7 +76,6 @@
   "users-management": "Zarządzanie użytkownikami",
   "logout": "Wyloguj",
   "account-settings": "Ustawienia konta",
-  "accounts": "Konta",
   "dashboard": "Dashboard",
   "languages": {
     "pl": "Polski",

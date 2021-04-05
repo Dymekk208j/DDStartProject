@@ -1,26 +1,17 @@
 <div class="row">
   <div class="col-10">
-    <ul class="breadcrumbs mt-2">
+    <ul class="breadcrumbs mt-2 d-none d-sm-block">
       <li class="first">
-        <a routerLink="/" class="px-1 py-0"
-          ><mat-icon class="mb-1">home</mat-icon></a
-        >
+        <a routerLink="/" class="px-1 py-0"><mat-icon class="mb-1">home</mat-icon></a>
       </li>
-      <li
-        *ngFor="let crumb of crumb$ | async; index as i"
-        [ngClass]="{ 'active last': i === (crumb$ | async).length - 1 }"
-      >
+      <li *ngFor="let crumb of crumb$ | async; index as i" [ngClass]="{ 'active last': i === (crumb$ | async).length - 1 }">
         <a routerLink="{{ crumb.path }}">{{ crumb.text | translate }}</a>
       </li>
     </ul>
   </div>
 
   <div class="col-2 text-right">
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="userMenu"
-      aria-label="Example icon-button with a menu"
-    >
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="Example icon-button with a menu">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #userMenu="matMenu">

@@ -1,18 +1,18 @@
 <div class="row header">
-  <div class="col-1 logo p-1">
-    <img src="../../assets/logo.png" class="img-fluid p-0" />
+  <div class="col-3 col-sm-1 logo p-1">
+    <img src="../../assets/logo.png" class="img-fluid p-0" routerLink="/" />
   </div>
 
-  <div class="col-11 user-bar">
+  <div class="col-9 col-sm-11 user-bar">
     <dds-admin-panel-header></dds-admin-panel-header>
   </div>
 </div>
 
 <div class="row h-100">
-  <div class="col-1 px-0 py-2 main-menu">
+  <div class="col-3 col-sm-1 px-0 py-2 main-menu">
     <dds-admin-menu></dds-admin-menu>
   </div>
-  <div class="col-11 main-content">
+  <div class="col-9 col-sm-11 main-content">
     <router-outlet></router-outlet>
   </div>
 </div>

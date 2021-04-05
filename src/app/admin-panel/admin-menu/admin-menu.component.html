@@ -1,22 +1,13 @@
-<button
-  mat-raised-button
-  color="primary"
-  class="px-1"
-  routerLink="/Admin"
-  routerLinkActive="active"
-  [routerLinkActiveOptions]="{ exact: true }"
->
-  <mat-icon class="menu-icon">dashboard</mat-icon>
-  {{ "dashboard" | translate }}
-</button>
+<div class="admin-menu">
+  <button matTooltip="{{ 'dashboard' | translate }}" mat-raised-button color="primary" class="px-1" routerLink="/Admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon class="menu-icon">dashboard</mat-icon>
+    <span *ngIf="!isSmallScreen"> {{ "dashboard" | translate }}</span>
+  </button>
 
-<dds-expandable-menu
-  Header="users.users"
-  [Items]="UsersMenuItems"
-  HeaderIcon="supervised_user_circle"
-></dds-expandable-menu>
+  <dds-expandable-menu Header="users.users" [Items]="UsersMenuItems" HeaderIcon="supervised_user_circle" [OnlyIcons]="isSmallScreen"></dds-expandable-menu>
 
-<button mat-raised-button color="primary" class="px-1">
-  <mat-icon class="menu-icon">supervised_user_circle</mat-icon>
-  Test
-</button>
+  <button matTooltip="{{ 'admin-panel.menu.return-home' | translate }}" mat-raised-button color="primary" class="px-1" routerLink="/">
+    <mat-icon class="menu-icon">home</mat-icon>
+    <span *ngIf="!isSmallScreen"> {{ "admin-panel.menu.return-home" | translate }}</span>
+  </button>
+</div>
