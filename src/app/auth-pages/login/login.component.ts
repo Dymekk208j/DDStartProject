@@ -1,17 +1,13 @@
-import { AuthService } from "src/app/auth-pages/services/auth.service";
-import { Subscription } from "rxjs/internal/Subscription";
-import { TranslateService } from "@ngx-translate/core";
 import { LoginRequest } from "./../dto/requests/loginRequest";
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { State } from "../state/auth.state";
-import { filter, take } from "rxjs/operators";
+import { take } from "rxjs/operators";
 
 import * as AuthActions from "./../state/auth.actions";
-import { ToastrService } from "ngx-toastr";
 
-import { getIsUserLoggedInformation, getLoggedUser, getLoginUserResult } from "./../state/auth.selectors";
+import { getIsUserLoggedInformation } from "./../state/auth.selectors";
 import { Observable } from "rxjs";
 
 @Component({
@@ -19,18 +15,15 @@ import { Observable } from "rxjs";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"]
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  private resultSubscription: Subscription;
-
+export class LoginComponent {
   public login: string;
   public password: string;
   public rememberMe: boolean = true;
 
   public isUserLogged: boolean;
-  getLoginUserResult$: Observable<boolean | null>;
   userLogged$: Observable<boolean | null>;
 
-  constructor(private store: Store<State>, private router: Router, private toastr: ToastrService, private translate: TranslateService, private authService: AuthService) {
+  constructor(private store: Store<State>, private router: Router) {
     this.store
       .select(getIsUserLoggedInformation)
       .pipe(take(1))
@@ -38,23 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if (this.isUserLogged) this.router.navigateByUrl(`/`);
 
-    this.getLoginUserResult$ = this.store.select(getLoginUserResult);
-
     this.userLogged$ = this.store.select(getIsUserLoggedInformation);
-  }
-  ngOnDestroy(): void {
-    this.resultSubscription.unsubscribe();
-  }
-
-  ngOnInit(): void {
-    this.store.dispatch(AuthActions.resetStatuses());
-
-    this.resultSubscription = this.getLoginUserResult$.pipe(filter((t) => t !== null)).subscribe((result) => {
-      if (result) {
-        this.toastr.success(this.translate.instant("login-page.user-logged"));
-        this.router.navigateByUrl(`/`);
-      } else this.toastr.error(this.translate.instant("login-page.user-login-has-occurred-problem"));
-    });
   }
 
   signIn(): void {

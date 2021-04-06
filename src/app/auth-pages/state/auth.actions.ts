@@ -3,8 +3,6 @@ import { RegisterResponse, LoginResponse } from "./../dto/responses";
 import { LoginRequest, RegisterRequest } from "./../dto/requests";
 import { User } from "../models/user";
 
-export const resetStatuses = createAction("[Auth] Reset statuses");
-
 export const loginUser = createAction("[Auth] Login user", props<{ request: LoginRequest }>());
 
 export const loginUserSuccess = createAction("[Auth] Login user success", props<{ response: LoginResponse }>());
@@ -13,7 +11,7 @@ export const loginUserError = createAction("[Auth] Login user error", props<{ er
 
 export const registerUser = createAction("[Auth] Register user", props<{ request: RegisterRequest }>());
 
-export const registerUserSuccess = createAction("[Auth] Register user success", props<{ response: RegisterResponse }>());
+export const registerUserSuccess = createAction("[Auth] Register user success", props<{ response: RegisterResponse; request: RegisterRequest }>());
 
 export const registerUserError = createAction("[Auth] Register user error", props<{ errors: string }>());
 

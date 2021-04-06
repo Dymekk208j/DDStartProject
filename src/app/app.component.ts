@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
   public administratorRole: boolean = true;
 
   constructor(public translateService: TranslateService, private router: Router, private store: Store<State>, private authService: AuthService) {
-    this.store.dispatch(AuthActions.resetStatuses());
     this.userLogged$ = this.store.select(getIsUserLoggedInformation);
 
     translateService.addLangs(["en", "pl"]);

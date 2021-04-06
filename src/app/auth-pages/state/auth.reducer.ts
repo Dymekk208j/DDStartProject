@@ -11,7 +11,6 @@ export const authReducer = createReducer<IAuthState>(
     (state, params): IAuthState => {
       return {
         ...state,
-        loginUserResult: null,
         isUserLogged: false
       };
     }
@@ -28,7 +27,6 @@ export const authReducer = createReducer<IAuthState>(
       return {
         ...state,
         loggedUser: _loggedUser,
-        loginUserResult: true,
         isUserLogged: true
       };
     }
@@ -39,18 +37,7 @@ export const authReducer = createReducer<IAuthState>(
       return {
         ...state,
         loginErrors: params.errors,
-        loginUserResult: false,
         isUserLogged: false
-      };
-    }
-  ),
-  on(
-    AuthActions.resetStatuses,
-    (state, params): IAuthState => {
-      return {
-        ...state,
-        loginUserResult: null,
-        loginErrors: ""
       };
     }
   ),
@@ -58,8 +45,7 @@ export const authReducer = createReducer<IAuthState>(
     AuthActions.registerUser,
     (state, params): IAuthState => {
       return {
-        ...state,
-        registerUserResult: null
+        ...state
       };
     }
   ),
@@ -67,8 +53,7 @@ export const authReducer = createReducer<IAuthState>(
     AuthActions.registerUserSuccess,
     (state, params): IAuthState => {
       return {
-        ...state,
-        registerUserResult: true
+        ...state
       };
     }
   ),
@@ -77,8 +62,7 @@ export const authReducer = createReducer<IAuthState>(
     (state, params): IAuthState => {
       return {
         ...state,
-        registerUserErrors: params.errors,
-        registerUserResult: false
+        registerUserErrors: params.errors
       };
     }
   ),

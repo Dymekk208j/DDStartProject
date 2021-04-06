@@ -1,13 +1,17 @@
+import { TranslateService } from "@ngx-translate/core";
+import { Router } from "@angular/router";
 import { AuthService } from "./../services/auth.service";
 import { Injectable } from "@angular/core";
 import * as AuthActions from "./auth.actions";
-import { mergeMap, map, catchError, tap } from "rxjs/operators";
+import * as UiActions from "../../state/ui.actions";
+
+import { mergeMap, map, catchError, tap, switchMap } from "rxjs/operators";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class AuthEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(private actions$: Actions, private authService: AuthService, private router: Router, private translate: TranslateService) {}
 
   loginUser$ = createEffect(() => {
     return this.actions$.pipe(
@@ -21,14 +25,22 @@ export class AuthEffects {
     );
   });
 
-  loginUserSuccess$ = createEffect(
+  loginUserSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.loginUserSuccess),
+      tap((param) => {
+        if (param.response.rememberMe) this.authService.saveUserDataToLocalStorage({ Id: param.response.id, Login: param.response.login, Token: param.response.token });
+        this.router.navigateByUrl(`/`);
+      }),
+      map(() => UiActions.showSuccessToastr({ text: this.translate.instant("login-page.user-logged") }))
+    )
+  );
+
+  loginUserError$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.loginUserSuccess),
-        tap((param) => {
-          console.log(param.response.rememberMe);
-          if (param.response.rememberMe) this.authService.saveUserDataToLocalStorage({ Id: param.response.id, Login: param.response.login, Token: param.response.token });
-        })
+        ofType(AuthActions.loginUserError),
+        map(() => UiActions.showErrorToastr({ text: this.translate.instant("login-page.user-login-has-occurred-problem") }))
       ),
     { dispatch: false }
   );
@@ -38,15 +50,22 @@ export class AuthEffects {
       ofType(AuthActions.registerUser),
       mergeMap((params) =>
         this.authService.registerUser(params.request).pipe(
-          map((response) => {
-            console.log("register user");
-            return AuthActions.registerUserSuccess({ response: response });
-          }),
+          map((response) => AuthActions.registerUserSuccess({ response: response, request: params.request })),
           catchError((error) => of(AuthActions.registerUserError({ errors: error })))
         )
       )
     );
   });
+
+  registerUserSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.registerUserSuccess),
+      switchMap((params) => [
+        UiActions.showSuccessToastr({ text: this.translate.instant("registration-page.user-created") }),
+        AuthActions.loginUser({ request: { Login: params.request.UserName, Password: params.request.Password, RememberMe: false } })
+      ])
+    )
+  );
 
   restoreUser$ = createEffect(() => {
     return this.actions$.pipe(

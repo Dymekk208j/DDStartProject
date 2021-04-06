@@ -1,3 +1,5 @@
+import { UiEffects } from "./state/ui.effects";
+import { uiReducer } from "./state/ui.reducer";
 import { HttpClientInterceptor } from "./auth-pages/httpClient.interceptor";
 import { MatPaginatorI18nService } from "./shared/MatPaginatorI18n.Service";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
@@ -54,7 +56,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     ToastrModule.forRoot(),
     StoreModule.forFeature("authState", authReducer),
-    EffectsModule.forFeature([AuthEffects])
+    EffectsModule.forFeature([AuthEffects]),
+    StoreModule.forFeature("uiState", uiReducer),
+    EffectsModule.forFeature([UiEffects])
   ],
   providers: [
     {
