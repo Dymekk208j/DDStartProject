@@ -13,6 +13,8 @@ import { of } from "rxjs";
 export class AuthEffects {
   constructor(private actions$: Actions, private authService: AuthService, private router: Router, private translate: TranslateService) {}
 
+  //#region login effects
+
   loginUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginUser),
@@ -45,6 +47,9 @@ export class AuthEffects {
     { dispatch: false }
   );
 
+  //#endregion
+
+  //#region registration
   registerUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.registerUser),
@@ -67,12 +72,27 @@ export class AuthEffects {
     )
   );
 
+  registerUserError$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.registerUserError),
+        map(() => UiActions.showErrorToastr({ text: this.translate.instant("registration-page.user-registration-has-occurred-problem") }))
+      ),
+    { dispatch: false }
+  );
+
+  //#endregion
+
+  //#region restore user effects
   restoreUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.restoreUser),
       map((params) => AuthActions.restoreUserSuccess({ user: params.user }))
     );
   });
+  //#endregion
+
+  //#region logout effects
 
   logOutUser$ = createEffect(() => {
     return this.actions$.pipe(
@@ -89,4 +109,6 @@ export class AuthEffects {
       ),
     { dispatch: false }
   );
+
+  //#endregion
 }
