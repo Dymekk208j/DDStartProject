@@ -1,8 +1,8 @@
-import { UserStateInitialState } from './user.initialState';
-import { createReducer, on } from '@ngrx/store';
-import * as AdminPanelActions from './user.actions';
-import { IUserState } from './user.state';
-import { User } from '../models/user';
+import { UserStateInitialState } from "./user.initialState";
+import { createReducer, on } from "@ngrx/store";
+import * as AdminPanelActions from "./user.actions";
+import { IUserState } from "./user.state";
+import { User } from "../models/user";
 
 export const userReducer = createReducer<IUserState>(
   UserStateInitialState,
@@ -11,7 +11,7 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
-        loadUsersSuccessParams: params.loadUsersSuccessParams,
+        loadUsersSuccessParams: params.loadUsersSuccessParams
       };
     }
   ),
@@ -20,7 +20,7 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
-        error: 'error',
+        error: "error"
       };
     }
   ),
@@ -28,21 +28,16 @@ export const userReducer = createReducer<IUserState>(
     AdminPanelActions.blockUser,
     (state, params): IUserState => {
       return {
-        ...state,
-        blockUserResult: null,
+        ...state
       };
     }
   ),
   on(
     AdminPanelActions.blockUserSuccess,
     (state, params): IUserState => {
-      let loadUsersSuccessParams = JSON.parse(
-        JSON.stringify(state.loadUsersSuccessParams)
-      );
+      let loadUsersSuccessParams = JSON.parse(JSON.stringify(state.loadUsersSuccessParams));
 
-      let index: number = loadUsersSuccessParams.rowData.findIndex(
-        (e: User) => e.Id == params.request.user.Id
-      );
+      let index: number = loadUsersSuccessParams.rowData.findIndex((e: User) => e.Id == params.request.user.Id);
 
       let user: User = Object.assign({}, loadUsersSuccessParams.rowData[index]);
       user.Blocked = true;
@@ -51,8 +46,7 @@ export const userReducer = createReducer<IUserState>(
 
       return {
         ...state,
-        blockUserResult: true,
-        loadUsersSuccessParams: loadUsersSuccessParams,
+        loadUsersSuccessParams: loadUsersSuccessParams
       };
     }
   ),
@@ -61,8 +55,7 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
-        blockUserResult: false,
-        error: params.errors,
+        error: params.errors
       };
     }
   ),
@@ -71,7 +64,7 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
-        blockUserReasons: params.reasons,
+        blockUserReasons: params.reasons
       };
     }
   ),
@@ -80,7 +73,7 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
-        error: 'error',
+        error: "error"
       };
     }
   ),
@@ -88,8 +81,7 @@ export const userReducer = createReducer<IUserState>(
     AdminPanelActions.addBlockReason,
     (state, params): IUserState => {
       return {
-        ...state,
-        addBlockReasonResult: null,
+        ...state
       };
     }
   ),
@@ -97,8 +89,7 @@ export const userReducer = createReducer<IUserState>(
     AdminPanelActions.addBlockReasonSuccess,
     (state, params): IUserState => {
       return {
-        ...state,
-        addBlockReasonResult: true,
+        ...state
       };
     }
   ),
@@ -107,20 +98,7 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
-        addBlockReasonResult: false,
-        error: params.errors,
-      };
-    }
-  ),
-  on(
-    AdminPanelActions.resetStatuses,
-    (state, params): IUserState => {
-      return {
-        ...state,
-        addBlockReasonResult: null,
-        blockUserResult: null,
-        removeUserResult: null,
-        error: 'error',
+        error: params.errors
       };
     }
   ),
@@ -128,8 +106,7 @@ export const userReducer = createReducer<IUserState>(
     AdminPanelActions.removeUser,
     (state, params): IUserState => {
       return {
-        ...state,
-        removeUserResult: null,
+        ...state
       };
     }
   ),
@@ -139,8 +116,7 @@ export const userReducer = createReducer<IUserState>(
       //todo
 
       return {
-        ...state,
-        removeUserResult: true,
+        ...state
       };
     }
   ),
@@ -149,8 +125,7 @@ export const userReducer = createReducer<IUserState>(
     (state, params): IUserState => {
       return {
         ...state,
-        removeUserResult: false,
-        error: params.errors,
+        error: params.errors
       };
     }
   )

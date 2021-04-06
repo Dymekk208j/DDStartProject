@@ -70,7 +70,9 @@
       "reason": "Powód",
       "reason-text-field-required": "Wartość w polu powód jest wymagana",
       "remove-user": "Usuń użytkownika",
-      "enter-a-reason-for-the-remove": "Wprowadź powód usunięcia użytkownika"
+      "enter-a-reason-for-the-remove": "Wprowadź powód usunięcia użytkownika",
+      "there-was-a-problem-removing-the-user": "Wystąpił problem podczas usuwania użytkownika",
+      "the-user-has-been-properly-removed": "Użytkownik został poprawnie usunięty"
     }
   },
   "users-management": "Zarządzanie użytkownikami",

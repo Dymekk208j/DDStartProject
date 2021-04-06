@@ -71,7 +71,9 @@
       "remove-user": "Remove user",
       "reason": "Reason",
       "reason-text-field-required": "Reason text is required",
-      "enter-a-reason-for-the-remove": "Enter a reason for the remove user"
+      "enter-a-reason-for-the-remove": "Enter a reason for the remove user",
+      "there-was-a-problem-removing-the-user": "There was a problem removing the user",
+      "the-user-has-been-properly-removed": "The user has been properly removed"
     }
   },
   "account-settings": "Account settings",
