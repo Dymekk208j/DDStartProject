@@ -7,24 +7,6 @@ import { User } from "../models/user";
 export const userReducer = createReducer<IUserState>(
   UserStateInitialState,
   on(
-    AdminPanelActions.fetchUsersSuccess,
-    (state, params): IUserState => {
-      return {
-        ...state,
-        loadUsersSuccessParams: params.loadUsersSuccessParams
-      };
-    }
-  ),
-  on(
-    AdminPanelActions.fetchUsersError,
-    (state, params): IUserState => {
-      return {
-        ...state,
-        error: "error"
-      };
-    }
-  ),
-  on(
     AdminPanelActions.blockUser,
     (state, params): IUserState => {
       return {
@@ -35,18 +17,19 @@ export const userReducer = createReducer<IUserState>(
   on(
     AdminPanelActions.blockUserSuccess,
     (state, params): IUserState => {
-      let loadUsersSuccessParams = JSON.parse(JSON.stringify(state.loadUsersSuccessParams));
+      //TODO odświeżanie listy użytkowników
+      // let loadUsersSuccessParams = JSON.parse(JSON.stringify(state.loadUsersSuccessParams));
 
-      let index: number = loadUsersSuccessParams.rowData.findIndex((e: User) => e.Id == params.request.user.Id);
+      // let index: number = loadUsersSuccessParams.rowData.findIndex((e: User) => e.Id == params.request.user.Id);
 
-      let user: User = Object.assign({}, loadUsersSuccessParams.rowData[index]);
-      user.Blocked = true;
+      // let user: User = Object.assign({}, loadUsersSuccessParams.rowData[index]);
+      // user.Blocked = true;
 
-      loadUsersSuccessParams.rowData[index] = user;
+      // loadUsersSuccessParams.rowData[index] = user;
 
       return {
-        ...state,
-        loadUsersSuccessParams: loadUsersSuccessParams
+        ...state
+        // loadUsersSuccessParams: loadUsersSuccessParams
       };
     }
   ),

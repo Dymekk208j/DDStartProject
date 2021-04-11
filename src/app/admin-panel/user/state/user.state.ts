@@ -6,7 +6,6 @@ export interface State extends AppState.State {
 }
 
 export interface IUserState {
-  loadUsersSuccessParams: LoadUsersSuccessParams;
   blockUserReasons: string[];
   error: string;
 }

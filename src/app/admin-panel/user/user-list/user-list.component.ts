@@ -1,45 +1,33 @@
-import { User } from './../models/user';
-import { Router } from '@angular/router';
-import { ActionsCellRenderer } from './ActionsCellRenderer/ActionsCellRenderer';
-import { FilterHelper } from './../../../shared/helpers/FilterHelper';
-import { State } from './../../../state/app.state';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Gender } from "./../../../shared/enums/gender";
+import { UserService } from "./../service/user.service";
+import { User } from "./../models/user";
+import { Router } from "@angular/router";
+import { ActionsCellRenderer } from "./ActionsCellRenderer/ActionsCellRenderer";
+import { FilterHelper } from "./../../../shared/helpers/FilterHelper";
+import { State } from "./../../../state/app.state";
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
 
-import { Store } from '@ngrx/store';
-import * as UserActions from './../state/user.actions';
-import { getUsers } from './../state/user.selectors';
-import {
-  GridOptions,
-  ICellRendererParams,
-  IServerSideGetRowsParams,
-  ColDef,
-} from 'ag-grid-community';
-import { LoadUsersSuccessParams } from '../models/LoadUsersSuccessParams';
-import { TranslateService } from '@ngx-translate/core';
-import { Role } from '../models/role';
-import moment from 'moment';
-import { MatDialog } from '@angular/material/dialog';
-import { BlockUserDialogComponent } from './components/block-user-dialog/block-user-dialog.component';
-import { RemoveUserDialogComponent } from './components/remove-user-dialog/remove-user-dialog.component';
-import { take } from 'rxjs/operators';
+import { Store } from "@ngrx/store";
+import { GridOptions, ICellRendererParams, IServerSideGetRowsParams, ColDef } from "ag-grid-community";
+import { LoadUsersSuccessParams } from "../models/LoadUsersSuccessParams";
+import { TranslateService } from "@ngx-translate/core";
+import moment from "moment";
+import { MatDialog } from "@angular/material/dialog";
+import { BlockUserDialogComponent } from "./components/block-user-dialog/block-user-dialog.component";
+import { RemoveUserDialogComponent } from "./components/remove-user-dialog/remove-user-dialog.component";
 
 @Component({
-  selector: 'dds-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+  selector: "dds-user-list",
+  templateUrl: "./user-list.component.html",
+  styleUrls: ["./user-list.component.scss"]
 })
 export class UserListComponent implements OnInit {
   userList$!: Observable<LoadUsersSuccessParams>;
   columnDefs!: ColDef[];
   gridOptions!: GridOptions;
 
-  constructor(
-    private store: Store<State>,
-    private translate: TranslateService,
-    private router: Router,
-    public dialog: MatDialog
-  ) {
+  constructor(private store: Store<State>, private translate: TranslateService, private router: Router, public dialog: MatDialog, private service: UserService) {
     this.translate.onLangChange.subscribe(() => {
       if (this!.gridOptions.api) {
         this!.gridOptions.api.refreshHeader();
@@ -49,79 +37,118 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userList$ = this.store.select(getUsers);
-
     this.columnDefs = [
       {
-        field: 'Name',
-        headerName: 'Name',
+        field: "userName",
+        headerName: "Name",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
-        filter: 'agTextColumnFilter',
+        filter: "agTextColumnFilter",
         filterParams: {
-          defaultOption: 'startsWith',
-        },
+          defaultOption: "startsWith"
+        }
       },
       {
-        field: 'Role',
-        headerName: 'Role',
+        field: "firstName",
+        headerName: "firstName",
+        headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+          defaultOption: "startsWith"
+        }
+      },
+      {
+        field: "lastName",
+        headerName: "lastName",
+        headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        filter: "agTextColumnFilter",
+        filterParams: {
+          defaultOption: "startsWith"
+        }
+      },
+      // {
+      //   field: "role",
+      //   headerName: "Role",
+      //   headerValueGetter: this.localizeHeader.bind(this),
+      //   sortable: true,
+      //   filter: true,
+      //   filterParams: {
+      //     values: (params: any) => {
+      //       var values = [];
+      //       for (let item in Role) {
+      //         if (isNaN(Number(item))) {
+      //           values.push(this.translate.instant("users.role." + item));
+      //         }
+      //       }
+      //       params.success(values);
+      //     }
+      //   },
+      //   cellRenderer: (params) => {
+      //     return this.translate.instant("users.role." + Role[params.data.Role]);
+      //   }
+      // },
+      {
+        field: "gender",
+        headerName: "Gender",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
         filter: true,
         filterParams: {
           values: (params: any) => {
             var values = [];
-            for (let item in Role) {
+            for (let item in Gender) {
               if (isNaN(Number(item))) {
-                values.push(this.translate.instant('users.role.' + item));
+                values.push(this.translate.instant("enums.gender." + item));
               }
             }
             params.success(values);
-          },
+          }
         },
         cellRenderer: (params) => {
-          return this.translate.instant('users.role.' + Role[params.data.Role]);
-        },
+          return this.translate.instant("enums.gender." + Gender[params.data.gender]);
+        }
       },
       {
-        field: 'Verified',
-        headerName: 'Verified',
+        field: "emailConfirmed",
+        headerName: "emailConfirmed",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
         filter: true,
         valueFormatter: (data) => {
-          return this.translate.instant('boolean.' + data.value.toString());
-        },
+          return this.translate.instant("boolean." + data.value.toString());
+        }
       },
       {
-        field: 'Blocked',
-        headerName: 'Blocked',
+        field: "blocked",
+        headerName: "Blocked",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
         valueFormatter: (data) => {
-          return this.translate.instant('boolean.' + data.value.toString());
-        },
+          return this.translate.instant("boolean." + data.value.toString());
+        }
       },
       {
-        field: 'RegistrationDate',
-        headerName: 'RegistrationDate',
+        field: "RegistrationDate",
+        headerName: "RegistrationDate",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
-        filter: 'agDateColumnFilter',
+        filter: "agDateColumnFilter",
         filterParams: FilterHelper.dateFilterParams,
         valueFormatter: (data) => {
-          return moment(data.value).format('DD/MM/YYYY HH:mm').toString();
-        },
+          return moment(data.value).format("DD/MM/YYYY HH:mm").toString();
+        }
       },
       {
-        headerName: 'Actions',
+        headerName: "Actions",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: false,
         filter: false,
-        pinned: 'right',
+        pinned: "right",
         suppressMenu: true,
         suppressMovable: true,
-        cellRenderer: 'actionsCellRenderer',
+        cellRenderer: "actionsCellRenderer",
         minWidth: 160,
         maxWidth: 160,
         cellRendererParams: {
@@ -133,11 +160,11 @@ export class UserListComponent implements OnInit {
           },
           onBlockClick: (user: User) => {
             const dialogRef = this.dialog.open(BlockUserDialogComponent, {
-              width: '500px',
-              data: user,
+              width: "500px",
+              data: user
             });
             dialogRef.afterClosed().subscribe((result) => {
-              console.log('The dialog was closed');
+              console.log("The dialog was closed");
               //TODO: Dodać wykrywanie czy został wciśnięty przycisk zablokuj
               // this.gridOptions.api.refreshServerSideStore({ purge: true });
             });
@@ -147,20 +174,20 @@ export class UserListComponent implements OnInit {
           },
           onRemoveClick: (user: User) => {
             const dialogRef = this.dialog.open(RemoveUserDialogComponent, {
-              width: '500px',
-              data: user,
+              width: "500px",
+              data: user
             });
             dialogRef.afterClosed().subscribe((result) => {
-              console.log('The dialog was closed');
+              console.log("The dialog was closed");
               //TODO: Dodać wykrywanie czy został wciśnięty przycisk zablokuj
               // this.gridOptions.api.refreshServerSideStore({ purge: true });
             });
           },
           onResendClick: (id: string) => {
             alert(`${id} was clicked onResendClick`);
-          },
-        },
-      },
+          }
+        }
+      }
     ];
 
     this.gridOptions = <GridOptions>{
@@ -172,44 +199,36 @@ export class UserListComponent implements OnInit {
       onPaginationChanged(params) {
         params.api.sizeColumnsToFit();
       },
-      rowModelType: 'serverSide',
-      serverSideStoreType: 'partial',
+      rowModelType: "serverSide",
+      serverSideStoreType: "partial",
       serverSideDatasource: this.dataSource,
       frameworkComponents: {
-        actionsCellRenderer: ActionsCellRenderer,
+        actionsCellRenderer: ActionsCellRenderer
       },
       cacheBlockSize: 20,
       pagination: true,
       paginationPageSize: 20,
       suppressPaginationPanel: true,
       getContextMenuItems: this.getContextMenuItems,
-      rowHeight: 38,
+      rowHeight: 38
     };
   }
 
   dataSource = {
-    getRows: (params: IServerSideGetRowsParams) => {
-      this.store.dispatch(UserActions.fetchUsers({ request: params.request }));
-
-      let rowData: LoadUsersSuccessParams = new LoadUsersSuccessParams();
-      this.userList$
-        .pipe(take(1))
-        .subscribe((variants) => (rowData = variants));
-
-      var rowsThisPage = rowData.rowData;
-      var lastRow = rowData.rowCount ? rowData.rowCount : 0;
-
-      params.successCallback(rowsThisPage, lastRow);
-    },
+    getRows: async (params: IServerSideGetRowsParams) => {
+      let response = await this.service.fetchUserList(params.request).toPromise();
+      console.log("response", response);
+      params.successCallback(response.rowData, response.rowCount ?? 0);
+    }
   };
 
   public localizeHeader(parameters: ICellRendererParams): string {
     let headerIdentifier = parameters.colDef.headerName;
 
-    return this.translate.instant('users.header.' + headerIdentifier);
+    return this.translate.instant("users.header." + headerIdentifier);
   }
 
   public getContextMenuItems() {
-    return ['copy'];
+    return ["copy"];
   }
 }

@@ -1,6 +1,6 @@
+import { AuthInterceptor } from "./shared/interceptors/auth.interceptor";
 import { UiEffects } from "./state/ui.effects";
 import { uiReducer } from "./state/ui.reducer";
-import { HttpClientInterceptor } from "./auth-pages/httpClient.interceptor";
 import { MatPaginatorI18nService } from "./shared/MatPaginatorI18n.Service";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
@@ -67,7 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpClientInterceptor,
+      useClass: AuthInterceptor,
       multi: true
     }
   ],

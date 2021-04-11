@@ -1,16 +1,17 @@
-import { AuthService } from "./services/auth.service";
+// import { AuthService } from "./services/auth.service";
 
 import { Injectable } from "@angular/core";
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-import { State } from "../auth-pages/state/auth.state";
-import { getLoggedUser } from "../auth-pages/state/auth.selectors";
 import { Store } from "@ngrx/store";
 import { take } from "rxjs/operators";
+import { AuthService } from "src/app/auth-pages/services/auth.service";
+import { State } from "src/app/auth-pages/state/auth.state";
+import { getLoggedUser } from "src/app/auth-pages/state/auth.selectors";
 
 @Injectable()
-export class HttpClientInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService, private store: Store<State>) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let user$ = this.store.select(getLoggedUser);

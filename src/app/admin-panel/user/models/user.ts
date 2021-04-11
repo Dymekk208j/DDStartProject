@@ -1,14 +1,15 @@
-import { Role } from './role';
+import { Role } from "./role";
 
 export class User {
-  public Id!: string;
-  public Name!: string;
-  public Role!: Role;
-  public Verified!: boolean;
-  public VerificationToken!: string;
-  public RegistrationDate!: string;
-  public Blocked!: boolean;
-  public BlockedDate?: string;
-  public BlockedByUserId?: string;
-  public BlockadeReason?: string;
+  public id!: string;
+  public name!: string;
+  public userName!: string;
+  public role!: Role;
+  public emailConfirmed!: boolean;
+  public verificationToken!: string;
+  public registrationDate!: string;
+  public blocked!: boolean;
+  public blockedDate?: string;
+  public blockedByUserId?: string;
+  public blockadeReason?: string;
 }

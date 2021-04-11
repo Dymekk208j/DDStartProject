@@ -11,18 +11,6 @@ import * as UiActions from "../../../state/ui.actions";
 export class UserEffects {
   constructor(private actions$: Actions, private userService: UserService, private translate: TranslateService) {}
 
-  fetchUsers$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(UserActions.fetchUsers),
-      mergeMap((params) =>
-        this.userService.fetchUserList(params.request).pipe(
-          map((result) => UserActions.fetchUsersSuccess({ loadUsersSuccessParams: result })),
-          catchError((error) => of(UserActions.fetchUsersError({ errors: error })))
-        )
-      )
-    );
-  });
-
   //#region block user effects
   blockUser$ = createEffect(() => {
     return this.actions$.pipe(

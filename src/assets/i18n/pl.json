@@ -40,10 +40,13 @@
       "Name": "Nazwa",
       "Role": "Rola",
       "VerificationToken": "Token weryfikacyjny",
-      "Verified": "Zweryfikowano",
       "RegistrationDate": "Data rejestracji",
       "Actions": "Akcje",
-      "Blocked": "Zablokowany"
+      "Blocked": "Zablokowany",
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "emailConfirmed": "Zweryfikowano",
+      "Gender": "Płeć"
     },
     "role": {
       "Administrator": "Administrator",
@@ -138,5 +141,12 @@
   },
   "context-menu": {
     "logout": "Wyloguj"
+  },
+  "enums": {
+    "gender": {
+      "Man": "Mężczyzna",
+      "Other": "Inny",
+      "Woman": "Kobieta"
+    }
   }
 }

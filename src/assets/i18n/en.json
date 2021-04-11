@@ -40,11 +40,14 @@
       "Id": "Id",
       "Name": "Name",
       "Role": "Role",
-      "Verified": "Verified",
       "VerificationToken": "Verification token",
       "RegistrationDate": "Registration date",
       "Actions": "Actions",
-      "Blocked": "Blocked"
+      "Blocked": "Blocked",
+      "firstName": "Firstname",
+      "lastName": "Lastname",
+      "emailConfirmed": "Verified",
+      "Gender": "Gender"
     },
     "role": {
       "Administrator": "Administrator",
@@ -138,5 +141,12 @@
   },
   "context-menu": {
     "logout": "LogOut"
+  },
+  "enums": {
+    "gender": {
+      "Man": "Man",
+      "Other": "Other",
+      "Woman": "Woman"
+    }
   }
 }

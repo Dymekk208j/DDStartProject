@@ -38,13 +38,11 @@ export class AuthEffects {
     )
   );
 
-  loginUserError$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(AuthActions.loginUserError),
-        map(() => UiActions.showErrorToastr({ text: this.translate.instant("login-page.user-login-has-occurred-problem") }))
-      ),
-    { dispatch: false }
+  loginUserError$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.loginUserError),
+      map(() => UiActions.showErrorToastr({ text: this.translate.instant("login-page.user-login-has-occurred-problem") }))
+    )
   );
 
   //#endregion
@@ -72,13 +70,11 @@ export class AuthEffects {
     )
   );
 
-  registerUserError$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(AuthActions.registerUserError),
-        map(() => UiActions.showErrorToastr({ text: this.translate.instant("registration-page.user-registration-has-occurred-problem") }))
-      ),
-    { dispatch: false }
+  registerUserError$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.registerUserError),
+      map(() => UiActions.showErrorToastr({ text: this.translate.instant("registration-page.user-registration-has-occurred-problem") }))
+    )
   );
 
   //#endregion
