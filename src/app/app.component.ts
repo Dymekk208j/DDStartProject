@@ -12,7 +12,7 @@ import { Observable } from "rxjs";
 import { User } from "./auth-pages/models/user";
 import jwt_decode from "jwt-decode";
 import { JwtPayload } from "jwt-decode";
-import moment, { Moment } from "moment";
+import moment from "moment";
 import { OnDestroy } from "@angular/core";
 
 @Component({
@@ -22,14 +22,12 @@ import { OnDestroy } from "@angular/core";
 })
 export class AppComponent implements OnInit, OnDestroy {
   public isAdminPanel = false;
-  // public isUserLogged: boolean;
-
   private tokenCheckerSubscription: Subscription;
+  private routeSubscription: Subscription;
 
   public userLogged$: Observable<boolean | null>;
   public user$: Observable<User | null>;
 
-  title = "DDStartProject";
   public selectedLang: string;
   public administratorRole: boolean = true;
 
@@ -42,14 +40,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.selectedLang = browserLanguage.match(/en|pl/) ? browserLanguage : "en";
     translateService.use(this.selectedLang);
 
-    //TODO: Usuniecie subskrybcji i przenisienie do store
-    this.router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe((event) => {
+    this.routeSubscription = this.router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe((event) => {
       this.isAdminPanel = event.url.startsWith("/Admin");
     });
   }
 
   ngOnDestroy(): void {
     this.tokenCheckerSubscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
