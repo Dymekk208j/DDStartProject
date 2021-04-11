@@ -61,7 +61,6 @@ export class AppComponent implements OnInit, OnDestroy {
       next: (user) => {
         if (user != null) {
           let jwt: JwtPayload = jwt_decode(user.Token);
-          console.log(jwt);
 
           if (jwt.exp) {
             const date = new Date(0);

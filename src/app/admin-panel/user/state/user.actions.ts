@@ -1,14 +1,6 @@
 import { RemoveUserRequest } from "./../../shared/dto/requests/removeUserRequest";
 import { BlockUserRequest } from "./../../shared/dto/requests/blockUserRequest";
 import { createAction, props } from "@ngrx/store";
-import { IServerSideGetRowsRequest } from "ag-grid-community";
-import { LoadUsersSuccessParams } from "../models/LoadUsersSuccessParams";
-
-export const fetchUsers = createAction("[User list] Fetch users", props<{ request: IServerSideGetRowsRequest }>());
-
-export const fetchUsersSuccess = createAction("[User list] Fetch users success", props<{ loadUsersSuccessParams: LoadUsersSuccessParams }>());
-
-export const fetchUsersError = createAction("[User list] Fetch users error", props<{ errors: string }>());
 
 export const blockUser = createAction("[User list] Block users", props<{ request: BlockUserRequest }>());
 
