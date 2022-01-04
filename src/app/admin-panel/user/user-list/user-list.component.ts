@@ -130,17 +130,17 @@ export class UserListComponent implements OnInit {
           return this.translate.instant("boolean." + data.value.toString());
         }
       },
-      // // {
-      //   field: "RegistrationDate",
-      //   headerName: "RegistrationDate",
-      //   headerValueGetter: this.localizeHeader.bind(this),
-      //   sortable: true,
-      //   filter: "agDateColumnFilter",
-      //   filterParams: FilterHelper.dateFilterParams,
-      //   valueFormatter: (data) => {
-      //     return moment(data.value).format("DD/MM/YYYY HH:mm").toString();
-      //   }
-      // },
+      {
+        field: "registrationDateUTC",
+        headerName: "RegistrationDate",
+        headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        filter: "agDateColumnFilter",
+        filterParams: FilterHelper.dateFilterParams,
+        valueFormatter: (data) => {
+          return moment(data.value).format("DD/MM/YYYY HH:mm").toString();
+        }
+      },
       {
         headerName: "Actions",
         headerValueGetter: this.localizeHeader.bind(this),

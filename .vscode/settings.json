@@ -15,5 +15,6 @@
         "ngrx",
         "toastr"
     ],
-    "i18n-ally.sourceLanguage": "en"
+    "i18n-ally.sourceLanguage": "en",
+    "angular.enable-strict-mode-prompt": false
 }
