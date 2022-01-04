@@ -16,6 +16,7 @@ import moment from "moment";
 import { MatDialog } from "@angular/material/dialog";
 import { BlockUserDialogComponent } from "./components/block-user-dialog/block-user-dialog.component";
 import { RemoveUserDialogComponent } from "./components/remove-user-dialog/remove-user-dialog.component";
+import { AgGridRequest } from 'src/app/shared/ag-grid/models/AgGridRequest';
 
 @Component({
   selector: "dds-user-list",
@@ -90,7 +91,7 @@ export class UserListComponent implements OnInit {
       //   }
       // },
       {
-        field: "gender",
+        field: "Gender",
         headerName: "Gender",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
@@ -129,17 +130,17 @@ export class UserListComponent implements OnInit {
           return this.translate.instant("boolean." + data.value.toString());
         }
       },
-      {
-        field: "RegistrationDate",
-        headerName: "RegistrationDate",
-        headerValueGetter: this.localizeHeader.bind(this),
-        sortable: true,
-        filter: "agDateColumnFilter",
-        filterParams: FilterHelper.dateFilterParams,
-        valueFormatter: (data) => {
-          return moment(data.value).format("DD/MM/YYYY HH:mm").toString();
-        }
-      },
+      // // {
+      //   field: "RegistrationDate",
+      //   headerName: "RegistrationDate",
+      //   headerValueGetter: this.localizeHeader.bind(this),
+      //   sortable: true,
+      //   filter: "agDateColumnFilter",
+      //   filterParams: FilterHelper.dateFilterParams,
+      //   valueFormatter: (data) => {
+      //     return moment(data.value).format("DD/MM/YYYY HH:mm").toString();
+      //   }
+      // },
       {
         headerName: "Actions",
         headerValueGetter: this.localizeHeader.bind(this),
@@ -216,8 +217,7 @@ export class UserListComponent implements OnInit {
 
   dataSource = {
     getRows: async (params: IServerSideGetRowsParams) => {
-      let response = await this.service.fetchUserList(params.request).toPromise();
-      console.log("response", response);
+      let response = await this.service.fetchUserList(new AgGridRequest(params.request)).toPromise();
       params.successCallback(response.rowData, response.rowCount ?? 0);
     }
   };

@@ -1,8 +1,8 @@
+import { AgGridRequest } from './../../../shared/ag-grid/models/AgGridRequest';
 import { LoadUsersSuccessParams } from "./../models/LoadUsersSuccessParams";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IServerSideGetRowsRequest } from "ag-grid-community";
 
 import { BlockUserRequest } from "../../shared/dto/requests/blockUserRequest";
 import { TranslateService } from "@ngx-translate/core";
@@ -19,10 +19,8 @@ export class UserService {
     });
   }
 
-  fetchUserList(request: IServerSideGetRowsRequest): Observable<LoadUsersSuccessParams> {
+  fetchUserList(request: AgGridRequest): Observable<LoadUsersSuccessParams> {
     //TODO: dodać obsługę this.translate.currentLang
-    console.log("Request", request);
-
     let url: string = environment.apiUrl + "AdminPanel/Users/GetUsersList";
 
     return this.http.post<LoadUsersSuccessParams>(url, request);
