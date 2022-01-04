@@ -50,6 +50,7 @@
       "Gender": "Gender"
     },
     "role": {
+      "DDSoftwareAdministrator": "Administrator DDS",
       "Administrator": "Administrator",
       "Moderator": "Moderator",
       "User": "User"
@@ -147,6 +148,11 @@
       "Man": "Man",
       "Other": "Other",
       "Woman": "Woman"
+    }
+  },
+  "AgGrid": {
+    "Filter": {
+      "(Select All)": "(Select All)"
     }
   }
 }

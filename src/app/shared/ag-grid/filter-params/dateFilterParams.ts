@@ -1,5 +1,5 @@
-export class FilterHelper {
-  static dateFilterParams = {
+export class DateFilterParams {
+  static FilterParams = {
     comparator: function (filterLocalDateAtMidnight: Date, cellValue: string) {
       var dateAsString = cellValue;
       if (dateAsString == null) return -1;

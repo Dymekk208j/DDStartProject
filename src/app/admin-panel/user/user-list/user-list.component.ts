@@ -1,22 +1,23 @@
+import { BooleanFilterParams, DateFilterParams } from "./../../../shared/ag-grid/filter-params";
 import { Gender } from "./../../../shared/enums/gender";
 import { UserService } from "./../service/user.service";
 import { User } from "./../models/user";
 import { Router } from "@angular/router";
 import { ActionsCellRenderer } from "./ActionsCellRenderer/ActionsCellRenderer";
-import { FilterHelper } from "./../../../shared/helpers/FilterHelper";
 import { State } from "./../../../state/app.state";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { Store } from "@ngrx/store";
-import { GridOptions, ICellRendererParams, IServerSideGetRowsParams, ColDef } from "ag-grid-community";
+import { GridOptions, ICellRendererParams, IServerSideGetRowsParams, ColDef, SetFilterValuesFuncParams } from "ag-grid-community";
 import { LoadUsersSuccessParams } from "../models/LoadUsersSuccessParams";
 import { TranslateService } from "@ngx-translate/core";
 import moment from "moment";
 import { MatDialog } from "@angular/material/dialog";
 import { BlockUserDialogComponent } from "./components/block-user-dialog/block-user-dialog.component";
 import { RemoveUserDialogComponent } from "./components/remove-user-dialog/remove-user-dialog.component";
-import { AgGridRequest } from 'src/app/shared/ag-grid/models/AgGridRequest';
+import { AgGridRequest } from "src/app/shared/ag-grid/models/AgGridRequest";
+import { Role } from "../models/role";
 
 @Component({
   selector: "dds-user-list",
@@ -69,45 +70,56 @@ export class UserListComponent implements OnInit {
           defaultOption: "startsWith"
         }
       },
-      // {
-      //   field: "role",
-      //   headerName: "Role",
-      //   headerValueGetter: this.localizeHeader.bind(this),
-      //   sortable: true,
-      //   filter: true,
-      //   filterParams: {
-      //     values: (params: any) => {
-      //       var values = [];
-      //       for (let item in Role) {
-      //         if (isNaN(Number(item))) {
-      //           values.push(this.translate.instant("users.role." + item));
-      //         }
-      //       }
-      //       params.success(values);
-      //     }
-      //   },
-      //   cellRenderer: (params) => {
-      //     return this.translate.instant("users.role." + Role[params.data.Role]);
-      //   }
-      // },
+      {
+        field: "role",
+        headerName: "Role",
+        headerValueGetter: this.localizeHeader.bind(this),
+        sortable: true,
+        filter: "agSetColumnFilter",
+        filterParams: {
+          values: (params: SetFilterValuesFuncParams) => {
+            var values = [];
+            for (let item in Role) {
+              if (isNaN(Number(item))) {
+                values.push(item);
+              }
+            }
+            params.success(values);
+          },
+          cellRenderer: (params: ICellRendererParams) => {
+            if (params.value === "(Select All)") return this.translate.instant("AgGrid.Filter.(Select All)");
+            return this.translate.instant("users.role." + params.value);
+          }
+        },
+        cellRenderer: (params) => {
+          if (!params.data.role) return "";
+          return this.translate.instant("users.role." + params.data.role);
+        }
+      },
       {
         field: "Gender",
         headerName: "Gender",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
-        filter: true,
+        filter: "agSetColumnFilter",
         filterParams: {
-          values: (params: any) => {
+          values: (params: SetFilterValuesFuncParams) => {
             var values = [];
             for (let item in Gender) {
-              if (isNaN(Number(item))) {
-                values.push(this.translate.instant("enums.gender." + item));
+              if (!isNaN(Number(item))) {
+                values.push(item);
               }
             }
             params.success(values);
+          },
+          cellRenderer: (params: ICellRendererParams) => {
+            if (params.value === "(Select All)") return this.translate.instant("AgGrid.Filter.(Select All)");
+            return this.translate.instant("enums.gender." + Gender[params.value]);
           }
         },
         cellRenderer: (params) => {
+          if (!params.data.gender) return "";
+
           return this.translate.instant("enums.gender." + Gender[params.data.gender]);
         }
       },
@@ -116,7 +128,8 @@ export class UserListComponent implements OnInit {
         headerName: "emailConfirmed",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
-        filter: true,
+        filter: "agSetColumnFilter",
+        filterParams: new BooleanFilterParams(this.translate).FilterParams,
         valueFormatter: (data) => {
           return this.translate.instant("boolean." + data.value.toString());
         }
@@ -126,6 +139,8 @@ export class UserListComponent implements OnInit {
         headerName: "Blocked",
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
+        filter: "agSetColumnFilter",
+        filterParams: new BooleanFilterParams(this.translate).FilterParams,
         valueFormatter: (data) => {
           return this.translate.instant("boolean." + data.value.toString());
         }
@@ -136,7 +151,7 @@ export class UserListComponent implements OnInit {
         headerValueGetter: this.localizeHeader.bind(this),
         sortable: true,
         filter: "agDateColumnFilter",
-        filterParams: FilterHelper.dateFilterParams,
+        filterParams: DateFilterParams.FilterParams,
         valueFormatter: (data) => {
           return moment(data.value).format("DD/MM/YYYY HH:mm").toString();
         }
@@ -218,7 +233,8 @@ export class UserListComponent implements OnInit {
   dataSource = {
     getRows: async (params: IServerSideGetRowsParams) => {
       let response = await this.service.fetchUserList(new AgGridRequest(params.request)).toPromise();
-      params.successCallback(response.rowData, response.rowCount ?? 0);
+      params.successCallback(response.rowData ?? [], response.rowCount ?? 0);
+      this.gridOptions.api?.sizeColumnsToFit();
     }
   };
 
