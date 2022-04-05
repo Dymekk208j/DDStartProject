@@ -8,7 +8,7 @@
 </button>
 
 <button
-  *ngIf="!params.data.Blocked"
+  *ngIf="!params.data.blocked"
   mat-icon-button
   color="warn"
   matTooltip=" {{ 'users.list.actions.Block' | translate }}"
@@ -18,7 +18,7 @@
 </button>
 
 <button
-  *ngIf="params.data.Blocked"
+  *ngIf="params.data.blocked"
   mat-icon-button
   color="success"
   matTooltip=" {{ 'users.list.actions.Unblock' | translate }}"

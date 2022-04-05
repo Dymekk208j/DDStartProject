@@ -1,7 +1,8 @@
-import { LoadUsersSuccessParams } from "../models/LoadUsersSuccessParams";
+import { UserDetails } from "./../models/userDetails";
 import { IUserState } from "./user.state";
 
 export const UserStateInitialState: IUserState = {
   error: "",
-  blockUserReasons: []
+  blockUserReasons: [],
+  userDetails: new UserDetails()
 };

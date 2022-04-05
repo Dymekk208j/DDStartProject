@@ -30,7 +30,17 @@
         "Unblock": "Odblokuj",
         "Remove": "Usuń",
         "ManuallyResendVerificationToken": "Wyślij ponownie token weryfikacyjny",
-        "Edit": "Edytuj"
+        "Edit": "Edytuj",
+        "UserEmail": "E-mail użytkownika",
+        "UserName": "Nazwa użytkownika",
+        "FirstnameAndLastname": "Imię i nazwisko",
+        "BasicInformation": "Informacje podstawowe",
+        "Blocked": "Zablokowany",
+        "Verified": "Zweryfikowany",
+        "LastLogin": "Ostatnie logowanie",
+        "RegistrationDate": "Data rejestracji",
+        "Role": "Rola",
+        "Note": "Notatka"
       },
       "list": "Lista"
     },
@@ -55,7 +65,9 @@
       "User": "Użytkownik"
     },
     "details": {
-      "details": "Szczegóły"
+      "details": "Szczegóły",
+      "registrationDate": "Data rejestracji: ",
+      "userDetails": "Szczegóły użytkownika"
     },
     "block-user-dialog": {
       "there-was-a-problem-blocking-the-user": "Wystąpił problem podczas blokowania użytkownika!",
@@ -68,7 +80,8 @@
       "save-as-blocking-reason-template": "Zapisz jako szablon powodu blokady",
       "or-select-from-list": "lub wybierz z listy",
       "saved-reasons": "Zapisane powody",
-      "reason": "Powód"
+      "reason": "Powód",
+      "reason-text-field-required": "Wartość w polu powód jest wymagana"
     },
     "remove-user-dialog": {
       "reason": "Powód",
@@ -153,6 +166,20 @@
   "AgGrid": {
     "Filter": {
       "(Select All)": "(Wszystko)"
+    }
+  },
+  "GENERAL": {
+    "API": {
+      "GetApiData": {
+        "Success": {
+          "Title": "Sukces",
+          "Body": "Poprawnie pobrano dane z serwera!"
+        },
+        "Error": {
+          "Title": "Wystąpił błąd!",
+          "Body": "Wystąpił błąd podczas pobierania danych z serwera!"
+        }
+      }
     }
   }
 }

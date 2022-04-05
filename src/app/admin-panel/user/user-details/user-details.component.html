@@ -1,13 +1,102 @@
-Id: {{ Id }}
-<div class="container-fluid">
-  <div class="row">
-    <div class="offset-11 col-1">
-      <button
-        mat-raised-button
-        color="basic"
-        matTooltip=" {{ 'users.list.actions.Details' | translate }}"
-        routerLink="/Admin/Users/List"
-      >
+<div class="container-fluid mat-elevation-z2 ddsp-elevation">
+  <div class="row h-100" *ngIf="userDetails$ | async as userDetails">
+    <div class="col-2 border-right">
+      <div class="row">
+        <h1>{{ "users.details.userDetails" | translate }}</h1>
+      </div>
+      <div class="row">
+        <img src="https://via.placeholder.com/100x100" />
+      </div>
+      <div class="row">
+        {{ userDetails.userName }}
+      </div>
+      <div class="row">{{ userDetails.role }}</div>
+      <div class="row">
+        <div class="col">{{ "users.details.registrationDate" | translate }}</div>
+        <div class="col">{{ userDetails.registrationDateUTC | date }}</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <fa-icon [icon]="['fab', 'facebook-square']"></fa-icon>
+        </div>
+        <div class="col">
+          <fa-icon [icon]="['fab', 'twitter-square']"></fa-icon>
+        </div>
+        <div class="col">
+          <fa-icon [icon]="['fas', 'envelope-square']"></fa-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8 h-100 border-right">
+      <div class="row">
+        <div class="col-12">
+          <div class="row p-1">
+            <h3>{{ "users.list.actions.BasicInformation" | translate }}</h3>
+          </div>
+          <div class="row p-1">
+            <div class="col-4">
+              <div class="row">{{ "users.list.actions.UserEmail" | translate }}</div>
+              <div class="row">{{ userDetails.email }}</div>
+            </div>
+            <div class="col-4">
+              <div class="row">{{ "users.list.actions.UserName" | translate }}</div>
+              <div class="row">{{ userDetails.userName }}</div>
+            </div>
+            <div class="col-4">
+              <div class="row">{{ "users.list.actions.FirstnameAndLastname" | translate }}</div>
+              <div class="row">{{ userDetails.firstName }} {{ userDetails.lastName }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="row p-1">
+            <h3>{{ "users.list.actions.Details" | translate }}</h3>
+          </div>
+          <div class="row p-1">
+            <div class="col-4">
+              <div class="row">
+                <div class="col-6">{{ "users.list.actions.Blocked" | translate }}</div>
+                <div class="col-6">{{ userDetails.blocked }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6">{{ "users.list.actions.Verified" | translate }}</div>
+                <div class="col-6">{{ userDetails.emailConfirmed }}</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row">{{ "users.list.actions.LastLogin" | translate }}</div>
+              <div class="row">TODO</div>
+              <div class="row">{{ "users.list.actions.RegistrationDate" | translate }}</div>
+              <div class="row">{{ userDetails.registrationDateUTC | date }}</div>
+            </div>
+            <div class="col-4">
+              <div class="row">{{ "users.list.actions.Role" | translate }}</div>
+              <div class="row">{{ userDetails.role }} TODO</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="row p-1">
+            <h3>{{ "users.list.actions.Note" | translate }}</h3>
+          </div>
+          <div class="row p-1">
+            <div class="col-12">
+              <textarea rows="5" class="w-100"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <button mat-raised-button color="basic" matTooltip="{{ 'users.list.actions.Details' | translate }}" routerLink="/Admin/Users/List">
         Return
       </button>
     </div>

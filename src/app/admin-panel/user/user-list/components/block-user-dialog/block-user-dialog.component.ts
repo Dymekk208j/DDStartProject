@@ -8,6 +8,7 @@ import { State } from "./../../../../../state/app.state";
 import { Observable } from "rxjs";
 import { getUserBlockReasons } from "./../../../state/user.selectors";
 import * as UserActions from "./../../../state/user.actions";
+import { BlockUserReason } from '../../../models';
 
 @Component({
   selector: "dds-block-user-dialog",
@@ -16,7 +17,7 @@ import * as UserActions from "./../../../state/user.actions";
 })
 export class BlockUserDialogComponent implements OnInit {
   reasonText: string = "";
-  reasons$: Observable<string[]>;
+  reasons$: Observable<BlockUserReason[]>;
   saveAsTemplate: boolean = false;
 
   constructor(private store: Store<State>, public dialogRef: MatDialogRef<BlockUserDialogComponent>, @Inject(MAT_DIALOG_DATA) public user: User) {}
@@ -30,14 +31,15 @@ export class BlockUserDialogComponent implements OnInit {
     if (+event.value === -1) this.reasonText = "";
     else
       this.reasons$.subscribe((reasons) => {
-        this.reasonText = reasons[+event.value];
+        this.reasonText = reasons.find(x => x.id === +event.value)?.name ?? '';
       });
   }
 
   onBlockClick(): void {
     let request: BlockUserRequest = {
       reason: this.reasonText,
-      user: this.user
+      id: this.user.id,
+      saveAsTemplate: this.saveAsTemplate
     };
     this.store.dispatch(UserActions.blockUser({ request }));
 
@@ -51,4 +53,8 @@ export class BlockUserDialogComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  onSaveAsTemplateChangeValue(booleanValue: boolean){
+    this.saveAsTemplate = !booleanValue;
+}
 }
