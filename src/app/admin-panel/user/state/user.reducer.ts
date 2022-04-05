@@ -2,7 +2,6 @@ import { UserStateInitialState } from "./user.initialState";
 import { createReducer, on } from "@ngrx/store";
 import * as AdminPanelActions from "./user.actions";
 import { IUserState } from "./user.state";
-import { User } from "../models/user";
 
 export const userReducer = createReducer<IUserState>(
   UserStateInitialState,
@@ -105,6 +104,34 @@ export const userReducer = createReducer<IUserState>(
   ),
   on(
     AdminPanelActions.removeUserError,
+    (state, params): IUserState => {
+      return {
+        ...state,
+        error: params.errors
+      };
+    }
+  ), //fetchUserDetails
+  on(
+    AdminPanelActions.fetchUserDetails,
+    (state, params): IUserState => {
+      return {
+        ...state
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.fetchUserDetailsSuccess,
+    (state, params): IUserState => {
+      //todo
+
+      return {
+        ...state,
+        userDetails: params.userDetails
+      };
+    }
+  ),
+  on(
+    AdminPanelActions.fetchUserDetailsError,
     (state, params): IUserState => {
       return {
         ...state,

@@ -31,7 +31,17 @@
         "Unblock": "Unblock",
         "Remove": "Remove",
         "ManuallyResendVerificationToken": "Manually resend verification token",
-        "Edit": "Edit"
+        "Edit": "Edit",
+        "UserEmail": "User e-mail",
+        "UserName": "Username",
+        "FirstnameAndLastname": "Firstname and lastname",
+        "BasicInformation": "Basic information",
+        "Blocked": "Blocked",
+        "Verified": "Verified",
+        "LastLogin": "Last login date",
+        "RegistrationDate": "Registration date",
+        "Role": "Role",
+        "Note": "Note"
       },
       "list": "List"
     },
@@ -56,7 +66,9 @@
       "User": "User"
     },
     "details": {
-      "details": "Details"
+      "details": "Details",
+      "registrationDate": "Registration date: ",
+      "userDetails": "User details"
     },
     "block-user-dialog": {
       "the-user-has-been-properly-blocked": "The user has been properly blocked!",
@@ -69,7 +81,8 @@
       "save-as-blocking-reason-template": "Save as blocking reason template",
       "or-select-from-list": "or select from list",
       "saved-reasons": "Saved reasons",
-      "reason": "Reason"
+      "reason": "Reason",
+      "reason-text-field-required": "Reason text is required"
     },
     "remove-user-dialog": {
       "remove-user": "Remove user",
@@ -153,6 +166,20 @@
   "AgGrid": {
     "Filter": {
       "(Select All)": "(Select All)"
+    }
+  },
+  "GENERAL": {
+    "API": {
+      "GetApiData": {
+        "Success": {
+          "Title": "Success",
+          "Body": "Successfully retrieved data from the server!"
+        },
+        "Error": {
+          "Title": "Error occurred!",
+          "Body": "An error occurred while retrieving data from the server!"
+        }
+      }
     }
   }
 }

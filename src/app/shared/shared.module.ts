@@ -13,6 +13,11 @@ import { CustomPaginationComponent } from "./custom-pagination/custom-pagination
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 
 @NgModule({
   declarations: [CustomPaginationComponent, MustMatchDirective, PasswordRulesDirective],
@@ -29,7 +34,12 @@ import { MatInputModule } from "@angular/material/input";
     MatFormFieldModule,
     MatInputModule,
     MustMatchDirective,
-    PasswordRulesDirective
+    PasswordRulesDirective,
+    FontAwesomeModule
   ]
 })
-export class SharedModule {}
+export class SharedModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far, fab);
+  }
+}

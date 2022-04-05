@@ -1,8 +1,6 @@
-// import { Role } from "./role";
+import { Gender } from "./../../../shared/enums/gender";
 
-import { Gender } from "src/app/shared/enums";
-
-export interface User {
+export class UserDetails {
   id: string;
   userName: string;
   email: string;

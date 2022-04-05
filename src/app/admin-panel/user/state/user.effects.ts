@@ -2,7 +2,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "../service/user.service";
 import { Injectable } from "@angular/core";
 import * as UserActions from "./user.actions";
-import { mergeMap, map, catchError, switchMap } from "rxjs/operators";
+import { mergeMap, map, catchError } from "rxjs/operators";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import * as UiActions from "../../../state/ui.actions";
@@ -108,5 +108,26 @@ export class UserEffects {
     )
   );
 
+  //#endregion
+
+  //#region fetch user details
+  fetchUserDetails$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.fetchUserDetails),
+      mergeMap((params) =>
+        this.userService.fetchUserDetails(params.userId).pipe(
+          map((apiResponse) => UserActions.fetchUserDetailsSuccess({ userDetails: apiResponse })),
+          catchError((error) => of(UserActions.fetchUserDetailsError({ errors: error })))
+        )
+      )
+    );
+  });
+
+  fetchUserDetailsError$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.fetchUserDetailsError),
+      map(() => UiActions.showErrorToastr({ text: this.translate.instant("GENERAL.API.GetApiData.Error.Body") }))
+    )
+  );
   //#endregion
 }

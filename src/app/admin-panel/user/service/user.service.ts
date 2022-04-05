@@ -1,6 +1,7 @@
-import { AgGridRequest } from './../../../shared/ag-grid/models/AgGridRequest';
+import { UserDetails } from "./../models/userDetails";
+import { AgGridRequest } from "./../../../shared/ag-grid/models/AgGridRequest";
 import { LoadUsersSuccessParams } from "./../models/LoadUsersSuccessParams";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
@@ -8,6 +9,7 @@ import { BlockUserRequest } from "../../shared/dto/requests/blockUserRequest";
 import { TranslateService } from "@ngx-translate/core";
 import { RemoveUserRequest } from "../../shared/dto/requests/removeUserRequest";
 import { environment } from "src/environments/environment";
+import { BlockUserReason } from '../models';
 
 @Injectable({ providedIn: "root" })
 export class UserService {
@@ -27,22 +29,14 @@ export class UserService {
   }
 
   blockUser(request: BlockUserRequest): Observable<boolean> {
-    //TODO: dodać obsługę this.translate.currentLang
-    // request.languageCode = this.translate.currentLang; // TODO: nie działa
+    let url: string = environment.apiUrl + "AdminPanel/Users/BlockUser";
 
-    return new Observable<boolean>((subscriber) => {
-      if (request) {
-        subscriber.next(true);
-      } else throw "API call error";
-    });
+    return this.http.post<boolean>(url, request);
   }
 
-  fetchUserBlockReasons(): Observable<string[]> {
-    //TODO: dodać obsługę this.translate.currentLang
-    //TODO: Testowe zadanie
-    return new Observable<string[]>((subscriber) => {
-      subscriber.next(["Powód 1", "Powód 2", "Powód 3"]);
-    });
+  fetchUserBlockReasons(): Observable<BlockUserReason[]> {
+    let url: string = environment.apiUrl + "AdminPanel/Users/GetBlockUserReasonList";
+    return this.http.get<BlockUserReason[]>(url);
   }
 
   addBlockReason(reason: string): Observable<boolean> {
@@ -62,5 +56,13 @@ export class UserService {
         subscriber.next(true);
       } else throw "API call error";
     });
+  }
+
+  fetchUserDetails(userId: string): Observable<UserDetails> {
+    //TODO: dodać obsługę this.translate.currentLang
+    let url: string = environment.apiUrl + `AdminPanel/Users/GetUserDetails`;
+    const params = new HttpParams().append("Id", userId);
+
+    return this.http.get<UserDetails>(url, { params: params });
   }
 }

@@ -1,18 +1,19 @@
 {
     "cSpell.words": [
-        "Datasource",
-        "ITIS",
-        "Paginator",
-        "Sidenav",
         "autosize",
+        "Datasource",
         "ddsoftware",
+        "ddsp",
         "dropdownlist",
         "dropdowns",
         "endregion",
         "firstname",
+        "ITIS",
         "lastname",
         "minlength",
         "ngrx",
+        "Paginator",
+        "Sidenav",
         "toastr"
     ],
     "i18n-ally.sourceLanguage": "en",
