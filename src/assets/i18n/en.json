@@ -120,7 +120,8 @@
     "username-field-required": "Username field is mandatory",
     "password-field-required": "Password field is required",
     "user-logged": "Successfully logged in",
-    "user-login-has-occurred-problem": "User logging has occurred problem"
+    "user-login-has-occurred-problem": "User logging has occurred problem",
+    "user-login-has-been-banned": "User has been blocked"
   },
   "registration-page": {
     "username-is-mandatory": "Username is mandatory",

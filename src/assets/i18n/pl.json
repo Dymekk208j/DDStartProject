@@ -120,7 +120,8 @@
     "user-logged": "Poprawnie zalogowano",
     "user-login-has-occurred-problem": "Wystąpił problem z zalogowaniem użytkownika",
     "username-field-required": "Pole nazwy użytkownika jest obowiązkowe",
-    "password-field-required": "Pole hasła jest wymagane"
+    "password-field-required": "Pole hasła jest wymagane",
+    "user-login-has-been-banned": "Użytkownik został zablokowany"
   },
   "registration-page": {
     "between-6-and-255-characters": "Od 6 do 255 znaków",

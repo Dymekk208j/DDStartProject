@@ -2,12 +2,13 @@ import { createAction, props } from "@ngrx/store";
 import { RegisterResponse, LoginResponse } from "./../dto/responses";
 import { LoginRequest, RegisterRequest } from "./../dto/requests";
 import { User } from "../models/user";
+import { HttpErrorResponse } from '@angular/common/http';
 
 export const loginUser = createAction("[Auth] Login user", props<{ request: LoginRequest }>());
 
 export const loginUserSuccess = createAction("[Auth] Login user success", props<{ response: LoginResponse }>());
 
-export const loginUserError = createAction("[Auth] Login user error", props<{ errors: string }>());
+export const loginUserError = createAction("[Auth] Login user error", props<{ error: HttpErrorResponse }>());
 
 export const registerUser = createAction("[Auth] Register user", props<{ request: RegisterRequest }>());
 

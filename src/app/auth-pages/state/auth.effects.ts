@@ -8,6 +8,7 @@ import * as UiActions from "../../state/ui.actions";
 import { mergeMap, map, catchError, tap, switchMap } from "rxjs/operators";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({ providedIn: "root" })
 export class AuthEffects {
@@ -21,7 +22,7 @@ export class AuthEffects {
       mergeMap((params) =>
         this.authService.loginUser(params.request).pipe(
           map((response) => AuthActions.loginUserSuccess({ response: response })),
-          catchError((error) => of(AuthActions.loginUserError({ errors: error })))
+          catchError((error: HttpErrorResponse) => of(AuthActions.loginUserError({ error: error })) )
         )
       )
     );
@@ -41,7 +42,15 @@ export class AuthEffects {
   loginUserError$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.loginUserError),
-      map(() => UiActions.showErrorToastr({ text: this.translate.instant("login-page.user-login-has-occurred-problem") }))
+      map((errorResponse) =>
+      {
+        if(errorResponse.error.status === 403)
+          return UiActions.showErrorToastr({ text: this.translate.instant("login-page.user-login-has-been-banned") })
+        else
+          return UiActions.showErrorToastr({ text: this.translate.instant("login-page.user-login-has-occurred-problem") })
+      }
+
+      )
     )
   );
 

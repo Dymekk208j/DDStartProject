@@ -36,7 +36,7 @@ export const authReducer = createReducer<IAuthState>(
     (state, params): IAuthState => {
       return {
         ...state,
-        loginErrors: params.errors,
+        loginErrors: params.error.message,
         isUserLogged: false
       };
     }
